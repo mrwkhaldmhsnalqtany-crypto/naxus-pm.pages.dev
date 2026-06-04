@@ -3,17 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Naxus PM | Fortune 500 Level</title>
+<title>Naxus PM | Global Enterprise</title>
 
 <style>
-:root{
-    --bg:#0a0f1a;
-    --card:#121a2a;
-    --text:#e6e6e6;
-    --muted:#aab3c5;
-    --accent:#4da3ff;
-}
-
 *{
     margin:0;
     padding:0;
@@ -22,12 +14,12 @@
 }
 
 body{
-    background:var(--bg);
-    color:var(--text);
-    line-height:1.6;
+    background:#070d1a;
+    color:white;
+    overflow-x:hidden;
 }
 
-/* NAV */
+/* NAVBAR */
 nav{
     position:fixed;
     top:0;
@@ -35,29 +27,33 @@ nav{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:16px 40px;
-    background:rgba(10,15,26,0.7);
-    backdrop-filter:blur(12px);
-    border-bottom:1px solid rgba(255,255,255,0.05);
+    padding:18px 30px;
+    background:rgba(10,15,30,0.4);
+    backdrop-filter:blur(15px);
     z-index:1000;
+    transition:0.3s;
+}
+
+nav.scrolled{
+    background:#0b1220;
+    box-shadow:0 5px 20px rgba(0,0,0,0.5);
 }
 
 nav h2{
-    color:var(--accent);
-    font-weight:600;
+    color:#00c2ff;
     letter-spacing:1px;
 }
 
 nav a{
-    color:var(--muted);
-    margin:0 14px;
+    color:white;
+    margin:0 12px;
     text-decoration:none;
     font-size:14px;
     transition:0.3s;
 }
 
 nav a:hover{
-    color:var(--accent);
+    color:#00c2ff;
 }
 
 /* HERO */
@@ -68,44 +64,42 @@ nav a:hover{
     justify-content:center;
     align-items:center;
     text-align:center;
-    padding:0 20px;
+    background:radial-gradient(circle at top,#1b3cff,#050816);
 }
 
 .hero h1{
-    font-size:54px;
-    font-weight:600;
-    letter-spacing:1px;
+    font-size:52px;
+    animation:fadeDown 1s ease;
 }
 
 .hero p{
     margin-top:15px;
-    color:var(--muted);
-    max-width:600px;
+    opacity:0.8;
+    animation:fadeUp 1s ease;
 }
 
 .btn{
     margin-top:25px;
-    padding:12px 26px;
-    border:1px solid var(--accent);
-    background:transparent;
-    color:var(--accent);
-    border-radius:6px;
+    padding:14px 28px;
+    border:none;
+    border-radius:10px;
+    background:linear-gradient(90deg,#00c2ff,#2d6bff);
+    color:white;
+    font-weight:bold;
     cursor:pointer;
     transition:0.3s;
 }
 
 .btn:hover{
-    background:var(--accent);
-    color:black;
+    transform:scale(1.05);
 }
 
 /* SECTIONS */
 section{
-    padding:110px 40px;
-    max-width:1200px;
-    margin:auto;
+    padding:120px 25px;
+    text-align:center;
     opacity:0;
-    transform:translateY(40px);
+    transform:translateY(60px);
     transition:1s;
 }
 
@@ -114,70 +108,65 @@ section.show{
     transform:translateY(0);
 }
 
+/* TITLES */
 h2{
-    font-size:28px;
+    font-size:32px;
     margin-bottom:20px;
-    color:var(--text);
-    font-weight:500;
+    color:#00c2ff;
 }
 
 /* GRID */
 .grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-    gap:20px;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:25px;
+    margin-top:40px;
 }
 
-/* CARD */
+/* CARDS */
 .card{
-    background:var(--card);
-    padding:26px;
-    border-radius:10px;
+    background:linear-gradient(145deg,#121c33,#0e1629);
+    padding:30px;
+    border-radius:14px;
+    transition:0.4s;
     border:1px solid rgba(255,255,255,0.05);
-    transition:0.3s;
 }
 
 .card:hover{
-    border-color:var(--accent);
-    transform:translateY(-5px);
-}
-
-.muted{
-    color:var(--muted);
-    font-size:14px;
+    transform:translateY(-10px);
+    border-color:#00c2ff;
 }
 
 /* STATS */
-.stats{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-    gap:20px;
-}
-
-.stat-box{
-    background:var(--card);
-    padding:25px;
-    border-radius:10px;
-    text-align:center;
-}
-
 .stat{
-    font-size:30px;
-    color:var(--accent);
+    font-size:28px;
+    color:#00c2ff;
+    font-weight:bold;
 }
 
 /* FOOTER */
 footer{
-    padding:30px;
+    background:#050816;
     text-align:center;
-    color:var(--muted);
-    border-top:1px solid rgba(255,255,255,0.05);
+    padding:25px;
+    margin-top:50px;
+    opacity:0.8;
+}
+
+/* ANIMATIONS */
+@keyframes fadeDown{
+    from{opacity:0; transform:translateY(-40px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+@keyframes fadeUp{
+    from{opacity:0; transform:translateY(40px);}
+    to{opacity:1; transform:translateY(0);}
 }
 
 /* MOBILE */
 @media(max-width:768px){
-    .hero h1{font-size:36px;}
-    nav{padding:12px 20px;}
+    .hero h1{font-size:34px;}
     nav a{display:none;}
 }
 </style>
@@ -185,49 +174,37 @@ footer{
 
 <body>
 
-<nav>
+<nav id="nav">
     <h2>Naxus PM</h2>
     <div>
         <a href="#about">من نحن</a>
-        <a href="#services">الأعمال</a>
+        <a href="#services">الخدمات</a>
         <a href="#projects">المشاريع</a>
-        <a href="#stats">التقارير</a>
+        <a href="#stats">الأرقام</a>
         <a href="#contact">تواصل</a>
     </div>
 </nav>
 
 <!-- HERO -->
 <div class="hero">
-    <h1>قيادة مستقبل الطاقة والاستثمار</h1>
-    <p>منصة مؤسسية لإدارة المشاريع والاستثمارات وفق معايير عالمية</p>
-    <button class="btn">استكشف المنصة</button>
+    <h1>نقود مستقبل الطاقة والاستثمار</h1>
+    <p>منصة Naxus PM - إدارة مشاريع بمعايير عالمية</p>
+    <button class="btn">ابدأ الآن</button>
 </div>
 
 <!-- ABOUT -->
 <section id="about">
     <h2>من نحن</h2>
-    <p class="muted">
-        Naxus PM هي منصة مؤسسية متخصصة في إدارة المشاريع والاستثمار والطاقة، 
-        تهدف إلى تقديم حلول استراتيجية بمعايير عالمية.
-    </p>
+    <p>شركة متخصصة في إدارة المشاريع، الطاقة، والاستثمار وفق رؤية عالمية حديثة.</p>
 </section>
 
 <!-- SERVICES -->
 <section id="services">
-    <h2>الأعمال</h2>
+    <h2>خدماتنا</h2>
     <div class="grid">
-        <div class="card">
-            <h3>الاستثمار المؤسسي</h3>
-            <p class="muted">إدارة رؤوس الأموال بطرق استراتيجية طويلة المدى.</p>
-        </div>
-        <div class="card">
-            <h3>الطاقة</h3>
-            <p class="muted">مشاريع النفط والغاز والطاقة المتجددة.</p>
-        </div>
-        <div class="card">
-            <h3>إدارة المشاريع</h3>
-            <p class="muted">تنفيذ المشاريع الكبرى وفق معايير عالمية.</p>
-        </div>
+        <div class="card">💰 الاستثمار المؤسسي</div>
+        <div class="card">⚡ مشاريع الطاقة</div>
+        <div class="card">🏗 إدارة المشاريع الكبرى</div>
     </div>
 </section>
 
@@ -235,44 +212,39 @@ footer{
 <section id="projects">
     <h2>المشاريع</h2>
     <div class="grid">
-        <div class="card">مشروع تطوير الطاقة - مأرب</div>
-        <div class="card">منشأة نفطية - شبوة</div>
-        <div class="card">بنية تحتية استراتيجية - حضرموت</div>
+        <div class="card">حقل نفطي - مأرب</div>
+        <div class="card">محطة طاقة - شبوة</div>
+        <div class="card">بنية تحتية - حضرموت</div>
     </div>
 </section>
 
 <!-- STATS -->
 <section id="stats">
-    <h2>التقارير</h2>
-    <div class="stats">
-        <div class="stat-box">
-            <div class="stat">18+</div>
-            مشاريع نشطة
-        </div>
-        <div class="stat-box">
-            <div class="stat">4.1M</div>
-            إجمالي الاستثمارات
-        </div>
-        <div class="stat-box">
-            <div class="stat">7</div>
-            قطاعات تشغيل
-        </div>
+    <h2>الأرقام</h2>
+    <div class="grid">
+        <div class="card"><div class="stat">15+</div>مشروع نشط</div>
+        <div class="card"><div class="stat">3.2M</div>استثمارات</div>
+        <div class="card"><div class="stat">6</div>قطاعات طاقة</div>
     </div>
 </section>
 
 <!-- CONTACT -->
 <section id="contact">
     <h2>تواصل معنا</h2>
-    <div class="card">
-        info@naxuspm.com
-    </div>
+    <div class="card">info@naxuspm.com</div>
 </section>
 
 <footer>
-    © 2026 Naxus PM — Corporate Platform
+    © 2026 Naxus PM - Global Enterprise
 </footer>
 
 <script>
+// navbar effect
+window.addEventListener("scroll", ()=>{
+    document.getElementById("nav").classList.toggle("scrolled", window.scrollY > 50);
+});
+
+// scroll reveal
 const sections = document.querySelectorAll("section");
 
 window.addEventListener("scroll", ()=>{
