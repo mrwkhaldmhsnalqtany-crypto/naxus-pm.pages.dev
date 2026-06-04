@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Naxus Global Energy AI Network</title>
+<title>Naxus Autonomous Energy AI</title>
 
 <style>
 :root{
-    --bg:#050814;
+    --bg:#040712;
     --panel:#0e1626;
     --text:#eaf2ff;
     --muted:#9fb0c8;
@@ -29,13 +29,13 @@ body{
     color:var(--text);
 }
 
-/* HEADER */
-.header{
+/* TOP BAR */
+.topbar{
     position:fixed;
     top:0;
     width:100%;
     height:60px;
-    background:rgba(5,8,20,0.85);
+    background:rgba(4,7,18,0.85);
     backdrop-filter:blur(14px);
     border-bottom:1px solid var(--line);
     display:flex;
@@ -48,23 +48,56 @@ body{
 .brand{
     color:var(--accent);
     font-weight:bold;
+    letter-spacing:1px;
 }
 
 .status{
-    color:var(--muted);
     font-size:13px;
+    color:var(--muted);
 }
 
 /* LAYOUT */
 .container{
+    display:grid;
+    grid-template-columns:260px 1fr;
     margin-top:60px;
+}
+
+/* SIDEBAR */
+.sidebar{
+    background:var(--panel);
+    min-height:100vh;
+    padding:20px;
+    border-right:1px solid var(--line);
+}
+
+.sidebar h3{
+    color:var(--accent);
+    margin-bottom:15px;
+}
+
+.sidebar a{
+    display:block;
+    color:var(--muted);
+    text-decoration:none;
+    padding:10px;
+    border-radius:6px;
+}
+
+.sidebar a:hover{
+    background:#0b1220;
+    color:var(--accent);
+}
+
+/* MAIN */
+.main{
     padding:25px;
 }
 
 /* GRID */
 .grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
     gap:15px;
 }
 
@@ -83,53 +116,51 @@ body{
 }
 
 .kpi{
-    font-size:28px;
+    font-size:30px;
     color:var(--accent);
     font-weight:bold;
 }
 
-/* WORLD GRID MAP */
-.map{
-    margin:20px 0;
-    padding:25px;
-    border-radius:12px;
-    background:linear-gradient(135deg,#0b1d2a,#0a0f1a);
-    border:1px solid var(--line);
-}
-
-/* REGION */
-.region{
-    padding:10px;
-    margin:8px 0;
-    border-radius:8px;
-    background:#0e1626;
-    display:flex;
-    justify-content:space-between;
-    border:1px solid var(--line);
-}
-
-.ok{color:var(--accent);}
-.mid{color:var(--warn);}
-.low{color:var(--danger);}
-
-/* AI PANEL */
+/* AI CORE */
 .ai{
-    background:var(--panel);
-    padding:20px;
+    background:linear-gradient(135deg,#0b1d2a,#0e1626);
+    padding:22px;
     border-radius:12px;
     border:1px solid var(--line);
-    margin-bottom:15px;
+    margin-bottom:20px;
 }
 
+.ai-title{
+    color:var(--accent);
+    font-weight:bold;
+}
+
+.ai-log{
+    color:var(--muted);
+    margin-top:8px;
+    min-height:40px;
+}
+
+/* ALERT */
+.alert{
+    padding:12px;
+    border-radius:8px;
+    margin-bottom:10px;
+    border:1px solid var(--warn);
+    background:rgba(255,204,102,0.08);
+    color:var(--warn);
+}
+
+/* BUTTON */
 button{
     margin-top:10px;
     padding:10px 16px;
     border:none;
     border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
     background:var(--accent);
     color:#000;
-    font-weight:bold;
-    cursor:pointer;
 }
 
 /* FOOTER */
@@ -142,116 +173,125 @@ footer{
 }
 
 @media(max-width:900px){
-    .grid{grid-template-columns:1fr;}
+    .container{grid-template-columns:1fr;}
+    .sidebar{display:none;}
 }
 </style>
 </head>
 
 <body>
 
-<div class="header">
-    <div class="brand">Naxus Global Energy Network</div>
-    <div class="status" id="status">🟢 الشبكة مستقرة</div>
+<div class="topbar">
+    <div class="brand">Naxus Autonomous AI</div>
+    <div class="status" id="status">🟢 النظام يراقب الطاقة</div>
 </div>
 
 <div class="container">
 
-<!-- AI CORE -->
+<div class="sidebar">
+    <h3>AI Core</h3>
+    <a>🤖 العقل الذكي</a>
+    <a>⚡ الطاقة</a>
+    <a>🌍 الشبكة العالمية</a>
+    <a>🛢 النفط</a>
+    <a>📊 القرارات</a>
+</div>
+
+<div class="main">
+
+<div class="alert" id="alertBox">
+⚠ النظام في وضع المراقبة الذكية
+</div>
+
 <div class="ai">
-    <h3 style="color:var(--accent)">🧠 Global Energy AI Core</h3>
-    <p id="aiText" style="color:var(--muted)">تحليل الشبكة العالمية...</p>
-    <button onclick="runAI()">تشغيل تحليل الشبكة</button>
+    <div class="ai-title">🧠 العقل الذاتي للطاقة</div>
+    <div class="ai-log" id="aiLog">تشغيل النظام الذاتي...</div>
+    <button onclick="forceDecision()">تشغيل قرار ذكي يدوي</button>
 </div>
 
-<!-- KPIs -->
+<h2>لوحة التحكم الذاتية</h2>
+
 <div class="grid">
-    <div class="card"><div class="kpi" id="total">100%</div>استقرار الشبكة</div>
-    <div class="card"><div class="kpi" id="flow">8.7M</div>تدفق الطاقة</div>
-    <div class="card"><div class="kpi" id="balance">STABLE</div>التوازن</div>
-    <div class="card"><div class="kpi" id="risk">LOW</div>المخاطر</div>
+
+<div class="card">
+<div class="kpi" id="energy">9000</div>
+الإنتاج
 </div>
 
-<!-- GLOBAL NETWORK -->
-<div class="map">
-    <h3>🌍 شبكة الطاقة العالمية</h3>
+<div class="card">
+<div class="kpi" id="demand">8500</div>
+الطلب
+</div>
 
-    <div class="region">
-        الشرق الأوسط <span id="me" class="ok">Stable</span>
-    </div>
+<div class="card">
+<div class="kpi" id="eff">99%</div>
+الكفاءة
+</div>
 
-    <div class="region">
-        إفريقيا <span id="af" class="ok">Stable</span>
-    </div>
+<div class="card">
+<div class="kpi" id="state">STABLE</div>
+الحالة
+</div>
 
-    <div class="region">
-        آسيا <span id="as" class="ok">Stable</span>
-    </div>
-
-    <div class="region">
-        أوروبا <span id="eu" class="ok">Stable</span>
-    </div>
 </div>
 
 <footer>
-© 2026 Naxus Global Energy AI Network
+© 2026 Naxus Autonomous Energy AI
 </footer>
+
+</div>
 
 </div>
 
 <script>
 
-function randState(){
-    let r = Math.random();
-    if(r > 0.75) return "HIGH";
-    if(r > 0.4) return "STABLE";
-    return "LOW";
-}
+function aiDecision(){
 
-function runAI(){
+    let energy = Math.floor(8500 + Math.random()*1200);
+    let demand = Math.floor(8000 + Math.random()*1200);
 
-    let flow = (8 + Math.random()*2).toFixed(2);
-    let balance = "STABLE";
-    let risk = "LOW";
+    let state = "STABLE";
+    let log = "";
+    let alert = "النظام يعمل بشكل طبيعي";
 
-    let regions = ["me","af","as","eu"];
-
-    regions.forEach(r=>{
-        let state = randState();
-        document.getElementById(r).innerText = state;
-
-        if(state === "HIGH"){
-            document.getElementById(r).className = "mid";
-        }else if(state === "LOW"){
-            document.getElementById(r).className = "low";
-        }else{
-            document.getElementById(r).className = "ok";
-        }
-    });
-
-    if(Math.random() > 0.8){
-        balance = "ADJUSTING";
-        risk = "MEDIUM";
+    if(energy < demand){
+        state = "BALANCING";
+        log = "AI: زيادة الإنتاج + إعادة توزيع الطاقة تلقائيًا";
+        alert = "⚠ تنبيه: الطلب أعلى من الإنتاج — تفعيل موازنة تلقائية";
     }
 
-    document.getElementById("flow").innerText = flow + "M";
-    document.getElementById("balance").innerText = balance;
-    document.getElementById("risk").innerText = risk;
+    if(energy > demand + 800){
+        state = "SURPLUS";
+        log = "AI: تخفيض الإنتاج + تخزين الفائض";
+        alert = "🟢 فائض طاقة — النظام يعيد التوازن";
+    }
 
-    document.getElementById("total").innerText =
-        (95 + Math.random()*4).toFixed(1) + "%";
+    if(Math.random() > 0.85){
+        state = "OPTIMIZED";
+        log = "AI: تحسين شامل للشبكة العالمية للطاقة";
+    }
 
-    document.getElementById("aiText").innerText =
-        "AI: تحليل تدفق الطاقة العالمي — إعادة موازنة الشبكة عند الحاجة";
+    let eff = (97 + Math.random()*2).toFixed(1);
 
-    document.getElementById("status").innerText =
-        "🟢 الشبكة تعمل ضمن الحدود الطبيعية";
+    document.getElementById("energy").innerText = energy;
+    document.getElementById("demand").innerText = demand;
+    document.getElementById("eff").innerText = eff + "%";
+    document.getElementById("state").innerText = state;
+
+    document.getElementById("aiLog").innerText = log;
+    document.getElementById("alertBox").innerText = alert;
 
 }
 
-// auto AI loop
-setInterval(runAI, 4000);
+// manual decision
+function forceDecision(){
+    aiDecision();
+}
 
-runAI();
+// auto loop (autonomous behavior)
+setInterval(aiDecision, 4000);
+
+aiDecision();
 
 </script>
 
