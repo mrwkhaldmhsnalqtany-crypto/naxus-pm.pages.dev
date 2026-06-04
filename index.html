@@ -3,14 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Naxus Energy Galaxy AI</title>
+<title>Naxus Energy Multiverse</title>
 
 <style>
 body{
     margin:0;
     overflow:hidden;
-    background:#030510;
+    background:#040713;
     font-family:Arial;
+    color:#eaf2ff;
 }
 
 #ui{
@@ -26,12 +27,6 @@ body{
     color:#00ffd0;
 }
 
-#status{
-    color:#9fb0c8;
-    font-size:13px;
-    margin-top:5px;
-}
-
 canvas{
     display:block;
 }
@@ -41,138 +36,121 @@ canvas{
 <body>
 
 <div id="ui">
-🧠 Energy Galaxy AI
-<div id="status">Initializing galactic energy field...</div>
+🧠 Energy Multiverse Core
+<div id="status" style="color:#9fb0c8;font-size:13px;margin-top:5px;">
+Initializing universes...
+</div>
 </div>
 
 <canvas id="c"></canvas>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-
 <script>
 
-// Scene
-const scene = new THREE.Scene();
+const canvas = document.getElementById("c");
+const ctx = canvas.getContext("2d");
 
-// Camera
-const camera = new THREE.PerspectiveCamera(
-    75,
-    window.innerWidth/window.innerHeight,
-    0.1,
-    2000
-);
-camera.position.z = 300;
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
-// Renderer
-const renderer = new THREE.WebGLRenderer({
-    canvas: document.getElementById("c"),
-    antialias:true
-});
-renderer.setSize(window.innerWidth, window.innerHeight);
+let universes = [];
 
-// Galaxy group
-const galaxy = new THREE.Group();
-scene.add(galaxy);
-
-// Energy stars (universes)
-let stars = [];
-
-function createStar(){
-
-    let geometry = new THREE.SphereGeometry(2.5, 12, 12);
-    let material = new THREE.MeshBasicMaterial({color:0x00ffd0});
-
-    let star = new THREE.Mesh(geometry, material);
-
-    star.position.x = (Math.random()-0.5)*600;
-    star.position.y = (Math.random()-0.5)*600;
-    star.position.z = (Math.random()-0.5)*600;
-
-    star.userData = {
-        vx:(Math.random()-0.5)*0.4,
-        vy:(Math.random()-0.5)*0.4,
-        vz:(Math.random()-0.5)*0.4,
-        energy:Math.random()
-    };
-
-    galaxy.add(star);
-    stars.push(star);
+// إنشاء عدة أكوان
+for(let i=0;i<5;i++){
+    universes.push({
+        x: Math.random()*canvas.width,
+        y: Math.random()*canvas.height,
+        r: 80 + Math.random()*120,
+        energy: Math.random(),
+        dx: (Math.random()-0.5)*1.5,
+        dy: (Math.random()-0.5)*1.5,
+        state: "STABLE"
+    });
 }
 
-// create galaxy stars
-for(let i=0;i<200;i++){
-    createStar();
-}
+function update(){
 
-// light core
-const light = new THREE.PointLight(0x00ffd0,2);
-light.position.set(0,0,0);
-scene.add(light);
+    ctx.fillStyle="#040713";
+    ctx.fillRect(0,0,canvas.width,canvas.height);
 
-// animation loop
-function animate(){
+    universes.forEach(u=>{
 
-    requestAnimationFrame(animate);
+        // حركة الكون
+        u.x += u.dx;
+        u.y += u.dy;
 
-    stars.forEach(s=>{
+        if(u.x < 0 || u.x > canvas.width) u.dx *= -1;
+        if(u.y < 0 || u.y > canvas.height) u.dy *= -1;
 
-        s.position.x += s.userData.vx;
-        s.position.y += s.userData.vy;
-        s.position.z += s.userData.vz;
+        // طاقة متغيرة
+        u.energy += (Math.random()-0.5)*0.03;
+        u.energy = Math.max(0,Math.min(1,u.energy));
 
-        // bounds
-        if(Math.abs(s.position.x)>600) s.userData.vx *= -1;
-        if(Math.abs(s.position.y)>600) s.userData.vy *= -1;
-        if(Math.abs(s.position.z)>600) s.userData.vz *= -1;
+        // تحديد الحالة
+        if(u.energy > 0.7) u.state = "HIGH ENERGY";
+        else if(u.energy < 0.3) u.state = "LOW ENERGY";
+        else u.state = "STABLE";
 
-        // energy drift
-        s.userData.energy += (Math.random()-0.5)*0.02;
-        s.userData.energy = Math.max(0,Math.min(1,s.userData.energy));
+        // رسم الكون
+        let glow = 20 + u.energy*40;
 
-        // size based on energy
-        let scale = 1 + s.userData.energy*2;
-        s.scale.set(scale,scale,scale);
+        let gradient = ctx.createRadialGradient(u.x,u.y,10,u.x,u.y,u.r);
+        gradient.addColorStop(0,"rgba(0,255,208,0.4)");
+        gradient.addColorStop(1,"rgba(0,255,208,0)");
 
-        // glow color shift
-        let g = 0.6 + s.userData.energy*0.4;
-        s.material.color.setRGB(0,1,g);
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.arc(u.x,u.y,u.r,0,Math.PI*2);
+        ctx.fill();
+
+        // النواة
+        ctx.beginPath();
+        ctx.fillStyle = "#00ffd0";
+        ctx.arc(u.x,u.y,6 + u.energy*4,0,Math.PI*2);
+        ctx.fill();
+
+        // خطوط الربط بين الأكوان
+        universes.forEach(v=>{
+            let dist = Math.hypot(u.x-v.x,u.y-v.y);
+            if(dist < 250){
+                ctx.beginPath();
+                ctx.strokeStyle="rgba(0,255,208,0.08)";
+                ctx.moveTo(u.x,u.y);
+                ctx.lineTo(v.x,v.y);
+                ctx.stroke();
+            }
+        });
 
     });
 
-    // galaxy rotation (cosmic motion)
-    galaxy.rotation.y += 0.0015;
-    galaxy.rotation.x += 0.0008;
-
-    renderer.render(scene,camera);
+    requestAnimationFrame(update);
 }
 
-animate();
+update();
 
-// AI Core
-function updateAI(){
+// AI status engine
+function aiCore(){
 
-    let avg = stars.reduce((a,b)=>a+b.userData.energy,0)/stars.length;
+    let high = universes.filter(u=>u.energy>0.7).length;
+    let low = universes.filter(u=>u.energy<0.3).length;
 
     let status = "";
 
-    if(avg > 0.7){
-        status = "🟡 تمدد مجري — نشاط طاقي عالي";
-    }else if(avg < 0.3){
-        status = "🔴 انكماش طاقي — إعادة توازن المجرة";
+    if(high > low){
+        status = "🟡 النظام في حالة توسع طاقي بين الأكوان";
+    }else if(low > high){
+        status = "🔴 نقص طاقة في عدة أكوان — إعادة توازن";
     }else{
-        status = "🟢 مجرة الطاقة مستقرة — النظام في توازن كوني";
+        status = "🟢 توازن كوني مستقر عبر جميع الأكوان";
     }
 
     document.getElementById("status").innerText = status;
 }
 
-setInterval(updateAI,2000);
+setInterval(aiCore, 2500);
 
-// resize
 window.addEventListener("resize",()=>{
-    camera.aspect = window.innerWidth/window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 });
 
 </script>
