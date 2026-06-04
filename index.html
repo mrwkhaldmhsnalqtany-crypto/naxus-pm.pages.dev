@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Energy State OS - Live</title>
+<title>Energy State OS</title>
 
 <style>
 body{
@@ -13,16 +13,69 @@ body{
     color:#eaf2ff;
 }
 
-header{
+/* TOP BAR */
+.topbar{
+    position:fixed;
+    top:0;
+    right:0;
+    left:0;
+    height:60px;
     background:#0e1626;
-    padding:15px;
-    color:#00ffd0;
-    font-weight:bold;
-    text-align:center;
-    border-bottom:1px solid rgba(255,255,255,0.1);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 20px;
+    border-bottom:1px solid rgba(255,255,255,0.08);
+    z-index:1000;
 }
 
-.container{
+.brand{
+    color:#00ffd0;
+    font-weight:bold;
+}
+
+.menu-btn{
+    background:none;
+    border:1px solid #00ffd0;
+    color:#00ffd0;
+    padding:6px 10px;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+/* SIDEBAR */
+.sidebar{
+    position:fixed;
+    top:60px;
+    right:-260px;
+    width:240px;
+    height:100%;
+    background:#0e1626;
+    border-left:1px solid rgba(255,255,255,0.08);
+    transition:0.3s;
+    padding:15px;
+}
+
+.sidebar.open{
+    right:0;
+}
+
+.sidebar a{
+    display:block;
+    padding:10px;
+    color:#9fb0c8;
+    text-decoration:none;
+    border-radius:6px;
+}
+
+.sidebar a:hover{
+    background:#111a2e;
+    color:#00ffd0;
+}
+
+/* MAIN */
+.main{
+    margin-top:60px;
     padding:20px;
 }
 
@@ -54,16 +107,6 @@ header{
     color:#9fb0c8;
 }
 
-.alert{
-    margin-top:15px;
-    padding:12px;
-    border-radius:8px;
-}
-
-.good{border:1px solid #00ffd0;color:#00ffd0;}
-.warn{border:1px solid #ffcc66;color:#ffcc66;}
-.bad{border:1px solid #ff5c7a;color:#ff5c7a;}
-
 button{
     margin-top:15px;
     padding:12px;
@@ -79,12 +122,27 @@ button{
 
 <body>
 
-<header>🏛 Energy State OS - LIVE SIMULATION</header>
+<!-- TOP BAR -->
+<div class="topbar">
+    <div class="brand">🏛 Energy State OS</div>
+    <button class="menu-btn" onclick="toggleMenu()">☰ الأقسام</button>
+</div>
 
-<div class="container">
+<!-- SIDEBAR -->
+<div class="sidebar" id="sidebar">
+    <a href="#">🏠 الرئيسية</a>
+    <a href="#">⚡ الإنتاج</a>
+    <a href="#">📊 الطلب</a>
+    <a href="#">🧠 الذكاء الاصطناعي</a>
+    <a href="#">🌍 الشبكة العالمية</a>
+    <a href="#">🚨 المخاطر</a>
+</div>
+
+<!-- MAIN -->
+<div class="main">
 
 <div class="status" id="status">
-النظام يعمل… مراقبة الطاقة جارية بشكل لحظي
+النظام يعمل… مراقبة الطاقة جارية
 </div>
 
 <div class="grid">
@@ -111,15 +169,19 @@ button{
 
 </div>
 
-<button onclick="updateSystem()">تشغيل تحديث ذكي</button>
+<button onclick="updateSystem()">تشغيل تحليل AI</button>
 
-<div class="alert good" id="decision">
+<div class="card" id="decision" style="margin-top:15px;">
 AI جاهز للتحليل
 </div>
 
 </div>
 
 <script>
+
+function toggleMenu(){
+    document.getElementById("sidebar").classList.toggle("open");
+}
 
 function updateSystem(){
 
@@ -133,11 +195,11 @@ function updateSystem(){
 
     if(reserve < 0){
         risk = "HIGH";
-        decision = "⚠ عجز طاقة — يجب رفع الإنتاج فورًا";
+        decision = "⚠ عجز طاقة — رفع الإنتاج فورًا";
     }
     else if(reserve < 500){
         risk = "MEDIUM";
-        decision = "🟡 توازن حساس — زيادة الإنتاج بنسبة 5%";
+        decision = "🟡 توازن حساس — زيادة الإنتاج";
     }
     else{
         risk = "LOW";
@@ -151,12 +213,11 @@ function updateSystem(){
     document.getElementById("decision").innerText = decision;
 
     document.getElementById("status").innerText =
-        "🧠 AI يعمل: تحليل الطاقة العالمية في الوقت الحقيقي";
+        "🧠 AI: تحليل مباشر لشبكة الطاقة العالمية";
 
 }
 
-// تشغيل تلقائي
-setInterval(updateSystem, 3000);
+setInterval(updateSystem,4000);
 updateSystem();
 
 </script>
