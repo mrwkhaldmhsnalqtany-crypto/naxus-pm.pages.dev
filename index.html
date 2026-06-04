@@ -3,12 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Naxus Autonomous Energy AI</title>
+<title>Naxus Energy ESI | Super Intelligence System</title>
 
 <style>
 :root{
-    --bg:#040712;
+    --bg:#040612;
     --panel:#0e1626;
+    --panel2:#0b1220;
     --text:#eaf2ff;
     --muted:#9fb0c8;
     --accent:#00ffd0;
@@ -35,7 +36,7 @@ body{
     top:0;
     width:100%;
     height:60px;
-    background:rgba(4,7,18,0.85);
+    background:rgba(4,6,18,0.85);
     backdrop-filter:blur(14px);
     border-bottom:1px solid var(--line);
     display:flex;
@@ -82,10 +83,12 @@ body{
     text-decoration:none;
     padding:10px;
     border-radius:6px;
+    margin-bottom:5px;
+    transition:0.3s;
 }
 
 .sidebar a:hover{
-    background:#0b1220;
+    background:var(--panel2);
     color:var(--accent);
 }
 
@@ -122,7 +125,7 @@ body{
 }
 
 /* AI CORE */
-.ai{
+.ai-core{
     background:linear-gradient(135deg,#0b1d2a,#0e1626);
     padding:22px;
     border-radius:12px;
@@ -133,15 +136,16 @@ body{
 .ai-title{
     color:var(--accent);
     font-weight:bold;
+    margin-bottom:8px;
 }
 
 .ai-log{
     color:var(--muted);
-    margin-top:8px;
+    font-size:14px;
     min-height:40px;
 }
 
-/* ALERT */
+/* ALERTS */
 .alert{
     padding:12px;
     border-radius:8px;
@@ -151,16 +155,20 @@ body{
     color:var(--warn);
 }
 
+.danger{
+    border-color:var(--danger);
+    color:var(--danger);
+}
+
 /* BUTTON */
 button{
-    margin-top:10px;
-    padding:10px 16px;
+    background:var(--accent);
     border:none;
+    padding:10px 16px;
     border-radius:8px;
     cursor:pointer;
     font-weight:bold;
-    background:var(--accent);
-    color:#000;
+    margin-top:10px;
 }
 
 /* FOOTER */
@@ -182,62 +190,73 @@ footer{
 <body>
 
 <div class="topbar">
-    <div class="brand">Naxus Autonomous AI</div>
-    <div class="status" id="status">🟢 النظام يراقب الطاقة</div>
+    <div class="brand">Naxus ESI</div>
+    <div class="status">🧠 Super Intelligence Active — Strategic Mode</div>
 </div>
 
 <div class="container">
 
+<!-- SIDEBAR -->
 <div class="sidebar">
-    <h3>AI Core</h3>
-    <a>🤖 العقل الذكي</a>
-    <a>⚡ الطاقة</a>
-    <a>🌍 الشبكة العالمية</a>
-    <a>🛢 النفط</a>
-    <a>📊 القرارات</a>
+    <h3>ESI Core</h3>
+    <a>🧠 Intelligence Core</a>
+    <a>⚡ Energy Forecast</a>
+    <a>🌍 Global Grid</a>
+    <a>🛢 Oil Systems</a>
+    <a>📊 Strategic Control</a>
+    <a>🚨 Risk Analysis</a>
 </div>
 
+<!-- MAIN -->
 <div class="main">
 
-<div class="alert" id="alertBox">
-⚠ النظام في وضع المراقبة الذكية
-</div>
+    <div class="alert">
+        ⚠ System Status: Global energy stability within optimal strategic range
+    </div>
 
-<div class="ai">
-    <div class="ai-title">🧠 العقل الذاتي للطاقة</div>
-    <div class="ai-log" id="aiLog">تشغيل النظام الذاتي...</div>
-    <button onclick="forceDecision()">تشغيل قرار ذكي يدوي</button>
-</div>
+    <!-- AI CORE -->
+    <div class="ai-core">
+        <div class="ai-title">🧠 ESI Neural Core</div>
+        <div class="ai-log" id="aiLog">Initializing super intelligence model...</div>
+        <button onclick="runESI()">تشغيل تحليل استراتيجي عميق</button>
+    </div>
 
-<h2>لوحة التحكم الذاتية</h2>
+    <h2>لوحة التحكم الذكية العليا</h2>
 
-<div class="grid">
+    <div class="grid">
+        <div class="card">
+            <div class="kpi" id="energy">9.1M</div>
+            إنتاج الطاقة
+        </div>
 
-<div class="card">
-<div class="kpi" id="energy">9000</div>
-الإنتاج
-</div>
+        <div class="card">
+            <div class="kpi" id="demand">8.2M</div>
+            الطلب العالمي
+        </div>
 
-<div class="card">
-<div class="kpi" id="demand">8500</div>
-الطلب
-</div>
+        <div class="card">
+            <div class="kpi" id="eff">99.4%</div>
+            كفاءة النظام
+        </div>
 
-<div class="card">
-<div class="kpi" id="eff">99%</div>
-الكفاءة
-</div>
+        <div class="card">
+            <div class="kpi" id="risk">LOW</div>
+            مستوى المخاطر
+        </div>
+    </div>
 
-<div class="card">
-<div class="kpi" id="state">STABLE</div>
-الحالة
-</div>
+    <br>
 
-</div>
+    <div class="grid">
+        <div class="card">⚡ تدفق الطاقة: مستقر عالميًا</div>
+        <div class="card">🧠 AI Prediction: 72h ahead stable</div>
+        <div class="card">🌍 الشبكة: تعمل بكفاءة عالية</div>
+        <div class="card">🛢 النفط: إنتاج فوق المتوسط</div>
+    </div>
 
-<footer>
-© 2026 Naxus Autonomous Energy AI
-</footer>
+    <footer>
+        © 2026 Naxus Energy ESI — Super Intelligence Sovereign System
+    </footer>
 
 </div>
 
@@ -245,53 +264,40 @@ footer{
 
 <script>
 
-function aiDecision(){
+function runESI(){
 
-    let energy = Math.floor(8500 + Math.random()*1200);
-    let demand = Math.floor(8000 + Math.random()*1200);
+    let energy = Math.floor(8800 + Math.random()*900);
+    let demand = Math.floor(8200 + Math.random()*1000);
+    let eff = (98 + Math.random()*1.5).toFixed(2);
 
-    let state = "STABLE";
+    let risk = "LOW";
     let log = "";
-    let alert = "النظام يعمل بشكل طبيعي";
 
     if(energy < demand){
-        state = "BALANCING";
-        log = "AI: زيادة الإنتاج + إعادة توزيع الطاقة تلقائيًا";
-        alert = "⚠ تنبيه: الطلب أعلى من الإنتاج — تفعيل موازنة تلقائية";
+        risk = "MEDIUM";
+        log = "تحذير: الطلب يقترب من الإنتاج — تفعيل إعادة التوازن";
+    } else {
+        risk = "LOW";
+        log = "تحليل إيجابي: فائض طاقة مستقر — لا توجد تهديدات";
     }
 
-    if(energy > demand + 800){
-        state = "SURPLUS";
-        log = "AI: تخفيض الإنتاج + تخزين الفائض";
-        alert = "🟢 فائض طاقة — النظام يعيد التوازن";
+    if(energy > 9400){
+        log = "حالة مثالية: النظام يعمل بأقصى كفاءة استراتيجية";
     }
 
-    if(Math.random() > 0.85){
-        state = "OPTIMIZED";
-        log = "AI: تحسين شامل للشبكة العالمية للطاقة";
-    }
-
-    let eff = (97 + Math.random()*2).toFixed(1);
-
-    document.getElementById("energy").innerText = energy;
-    document.getElementById("demand").innerText = demand;
+    document.getElementById("energy").innerText = energy + "M";
+    document.getElementById("demand").innerText = demand + "M";
     document.getElementById("eff").innerText = eff + "%";
-    document.getElementById("state").innerText = state;
+    document.getElementById("risk").innerText = risk;
 
-    document.getElementById("aiLog").innerText = log;
-    document.getElementById("alertBox").innerText = alert;
+    document.getElementById("aiLog").innerText = log + " | توقع 72h: استقرار استراتيجي مرتفع";
 
 }
 
-// manual decision
-function forceDecision(){
-    aiDecision();
-}
+// auto intelligence loop
+setInterval(runESI, 5000);
 
-// auto loop (autonomous behavior)
-setInterval(aiDecision, 4000);
-
-aiDecision();
+runESI();
 
 </script>
 
