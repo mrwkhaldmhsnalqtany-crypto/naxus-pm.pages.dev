@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Naxus Energy Metaverse</title>
+<title>Naxus Global Energy AI Network</title>
 
 <style>
 :root{
-    --bg:#040713;
+    --bg:#050814;
     --panel:#0e1626;
     --text:#eaf2ff;
     --muted:#9fb0c8;
@@ -35,7 +35,7 @@ body{
     top:0;
     width:100%;
     height:60px;
-    background:rgba(4,7,19,0.85);
+    background:rgba(5,8,20,0.85);
     backdrop-filter:blur(14px);
     border-bottom:1px solid var(--line);
     display:flex;
@@ -51,11 +51,11 @@ body{
 }
 
 .status{
-    font-size:13px;
     color:var(--muted);
+    font-size:13px;
 }
 
-/* MAIN */
+/* LAYOUT */
 .container{
     margin-top:60px;
     padding:25px;
@@ -64,7 +64,7 @@ body{
 /* GRID */
 .grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
     gap:15px;
 }
 
@@ -88,30 +88,31 @@ body{
     font-weight:bold;
 }
 
-/* METAVERSE MAP */
-.world{
-    margin-top:20px;
+/* WORLD GRID MAP */
+.map{
+    margin:20px 0;
     padding:25px;
     border-radius:12px;
     background:linear-gradient(135deg,#0b1d2a,#0a0f1a);
     border:1px solid var(--line);
 }
 
-.node{
-    display:flex;
-    justify-content:space-between;
+/* REGION */
+.region{
     padding:10px;
     margin:8px 0;
-    background:#0e1626;
     border-radius:8px;
+    background:#0e1626;
+    display:flex;
+    justify-content:space-between;
     border:1px solid var(--line);
 }
 
-.state-ok{color:var(--accent);}
-.state-mid{color:var(--warn);}
-.state-low{color:var(--danger);}
+.ok{color:var(--accent);}
+.mid{color:var(--warn);}
+.low{color:var(--danger);}
 
-/* AI CORE */
+/* AI PANEL */
 .ai{
     background:var(--panel);
     padding:20px;
@@ -149,117 +150,108 @@ footer{
 <body>
 
 <div class="header">
-    <div class="brand">Naxus Energy Metaverse</div>
-    <div class="status" id="status">🟢 العالم مستقر</div>
+    <div class="brand">Naxus Global Energy Network</div>
+    <div class="status" id="status">🟢 الشبكة مستقرة</div>
 </div>
 
 <div class="container">
 
-<!-- AI -->
+<!-- AI CORE -->
 <div class="ai">
-    <h3 style="color:var(--accent)">🧠 Metaverse AI Core</h3>
-    <p id="ai">تشغيل محاكاة العالم الطاقي...</p>
-    <button onclick="runMetaverse()">تشغيل محاكاة العالم</button>
+    <h3 style="color:var(--accent)">🧠 Global Energy AI Core</h3>
+    <p id="aiText" style="color:var(--muted)">تحليل الشبكة العالمية...</p>
+    <button onclick="runAI()">تشغيل تحليل الشبكة</button>
 </div>
 
 <!-- KPIs -->
 <div class="grid">
-    <div class="card"><div class="kpi" id="flow">8.9M</div>تدفق الطاقة</div>
-    <div class="card"><div class="kpi" id="balance">STABLE</div>التوازن العالمي</div>
+    <div class="card"><div class="kpi" id="total">100%</div>استقرار الشبكة</div>
+    <div class="card"><div class="kpi" id="flow">8.7M</div>تدفق الطاقة</div>
+    <div class="card"><div class="kpi" id="balance">STABLE</div>التوازن</div>
     <div class="card"><div class="kpi" id="risk">LOW</div>المخاطر</div>
-    <div class="card"><div class="kpi" id="eco">99%</div>كفاءة النظام</div>
 </div>
 
-<!-- METAVERSE WORLD -->
-<div class="world">
-    <h3>🌍 عالم الطاقة الافتراضي</h3>
+<!-- GLOBAL NETWORK -->
+<div class="map">
+    <h3>🌍 شبكة الطاقة العالمية</h3>
 
-    <div class="node">
-        الشرق الأوسط <span id="me" class="state-ok">Stable</span>
+    <div class="region">
+        الشرق الأوسط <span id="me" class="ok">Stable</span>
     </div>
 
-    <div class="node">
-        إفريقيا <span id="af" class="state-ok">Stable</span>
+    <div class="region">
+        إفريقيا <span id="af" class="ok">Stable</span>
     </div>
 
-    <div class="node">
-        آسيا <span id="as" class="state-ok">Stable</span>
+    <div class="region">
+        آسيا <span id="as" class="ok">Stable</span>
     </div>
 
-    <div class="node">
-        أوروبا <span id="eu" class="state-ok">Stable</span>
+    <div class="region">
+        أوروبا <span id="eu" class="ok">Stable</span>
     </div>
-
-    <div class="node">
-        الأمريكيتان <span id="us" class="state-ok">Stable</span>
-    </div>
-
 </div>
 
 <footer>
-© 2026 Naxus Energy Metaverse — Virtual Energy World System
+© 2026 Naxus Global Energy AI Network
 </footer>
 
 </div>
 
 <script>
 
-function rand(){
+function randState(){
     let r = Math.random();
     if(r > 0.75) return "HIGH";
     if(r > 0.4) return "STABLE";
     return "LOW";
 }
 
-function setNode(id,val){
-    let el = document.getElementById(id);
+function runAI(){
 
-    if(val === "HIGH"){
-        el.innerText = "High Load";
-        el.className = "state-mid";
-    }else if(val === "LOW"){
-        el.innerText = "Low Activity";
-        el.className = "state-low";
-    }else{
-        el.innerText = "Stable";
-        el.className = "state-ok";
-    }
-}
+    let flow = (8 + Math.random()*2).toFixed(2);
+    let balance = "STABLE";
+    let risk = "LOW";
 
-function runMetaverse(){
+    let regions = ["me","af","as","eu"];
 
-    let flow = (8 + Math.random()*3).toFixed(2);
-    let eco = (97 + Math.random()*2).toFixed(1);
-
-    let regions = ["me","af","as","eu","us"];
     regions.forEach(r=>{
-        setNode(r, rand());
+        let state = randState();
+        document.getElementById(r).innerText = state;
+
+        if(state === "HIGH"){
+            document.getElementById(r).className = "mid";
+        }else if(state === "LOW"){
+            document.getElementById(r).className = "low";
+        }else{
+            document.getElementById(r).className = "ok";
+        }
     });
 
-    let risk = "LOW";
-    let balance = "STABLE";
-
     if(Math.random() > 0.8){
-        risk = "MEDIUM";
         balance = "ADJUSTING";
+        risk = "MEDIUM";
     }
 
     document.getElementById("flow").innerText = flow + "M";
-    document.getElementById("eco").innerText = eco + "%";
-    document.getElementById("risk").innerText = risk;
     document.getElementById("balance").innerText = balance;
+    document.getElementById("risk").innerText = risk;
 
-    document.getElementById("ai").innerText =
-        "AI: محاكاة عالم الطاقة — توزيع ذكي بين المناطق + استقرار ديناميكي";
+    document.getElementById("total").innerText =
+        (95 + Math.random()*4).toFixed(1) + "%";
+
+    document.getElementById("aiText").innerText =
+        "AI: تحليل تدفق الطاقة العالمي — إعادة موازنة الشبكة عند الحاجة";
 
     document.getElementById("status").innerText =
-        "🟢 Metaverse Active — Global Energy Stable";
+        "🟢 الشبكة تعمل ضمن الحدود الطبيعية";
+
 }
 
-// auto simulation
-setInterval(runMetaverse, 4500);
+// auto AI loop
+setInterval(runAI, 4000);
 
-runMetaverse();
+runAI();
 
 </script>
 
