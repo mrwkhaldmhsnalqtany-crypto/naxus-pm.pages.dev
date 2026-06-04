@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Naxus Energy AI | Sovereign Intelligence System</title>
+<title>Naxus Energy OS | Sovereign Control System</title>
 
 <style>
 :root{
@@ -14,7 +14,6 @@
     --muted:#9fb0c8;
     --accent:#00d4a6;
     --warn:#ffcc66;
-    --danger:#ff5c7a;
     --line:rgba(255,255,255,0.06);
 }
 
@@ -28,6 +27,7 @@
 body{
     background:var(--bg);
     color:var(--text);
+    overflow-x:hidden;
 }
 
 /* TOP BAR */
@@ -36,7 +36,7 @@ body{
     top:0;
     width:100%;
     height:60px;
-    background:rgba(5,7,19,0.85);
+    background:rgba(5,7,19,0.8);
     backdrop-filter:blur(14px);
     border-bottom:1px solid var(--line);
     display:flex;
@@ -49,26 +49,24 @@ body{
 .brand{
     color:var(--accent);
     font-weight:bold;
+    letter-spacing:1px;
 }
 
 .status{
-    font-size:13px;
     color:var(--muted);
-}
-
-/* LAYOUT */
-.container{
-    display:grid;
-    grid-template-columns:260px 1fr;
-    margin-top:60px;
+    font-size:13px;
 }
 
 /* SIDEBAR */
 .sidebar{
+    position:fixed;
+    top:60px;
+    right:0;
+    width:240px;
+    height:100%;
     background:var(--panel);
-    min-height:100vh;
+    border-left:1px solid var(--line);
     padding:20px;
-    border-right:1px solid var(--line);
 }
 
 .sidebar h3{
@@ -79,10 +77,11 @@ body{
 .sidebar a{
     display:block;
     color:var(--muted);
-    text-decoration:none;
     padding:10px;
+    text-decoration:none;
     border-radius:6px;
     margin-bottom:5px;
+    transition:0.3s;
 }
 
 .sidebar a:hover{
@@ -92,7 +91,8 @@ body{
 
 /* MAIN */
 .main{
-    padding:25px;
+    margin-right:260px;
+    padding:80px 20px 40px;
 }
 
 /* GRID */
@@ -116,65 +116,44 @@ body{
     transform:translateY(-5px);
 }
 
+/* KPI */
 .kpi{
-    font-size:30px;
+    font-size:28px;
     color:var(--accent);
     font-weight:bold;
 }
 
-/* AI BOX */
-.ai-box{
-    background:linear-gradient(135deg,#0b1d2a,#0e1626);
-    border:1px solid var(--line);
-    padding:20px;
+/* MAP */
+.map{
+    background:linear-gradient(135deg,#0b1d2a,#0a0f1a);
+    padding:30px;
     border-radius:12px;
-    margin-bottom:20px;
+    border:1px solid var(--line);
 }
 
-.ai-title{
-    color:var(--accent);
-    font-weight:bold;
-}
-
-/* ALERTS */
+/* ALERT */
 .alert{
     background:rgba(255,204,102,0.1);
     border:1px solid var(--warn);
-    padding:12px;
-    border-radius:8px;
-    margin-bottom:10px;
+    padding:15px;
+    border-radius:10px;
+    margin-bottom:15px;
     color:var(--warn);
-}
-
-.danger{
-    border-color:var(--danger);
-    color:var(--danger);
-    background:rgba(255,92,122,0.08);
-}
-
-/* BUTTON */
-button{
-    background:var(--accent);
-    border:none;
-    padding:10px 16px;
-    border-radius:8px;
-    cursor:pointer;
-    font-weight:bold;
-    margin-top:10px;
 }
 
 /* FOOTER */
 footer{
     text-align:center;
-    padding:30px;
+    padding:25px;
     color:var(--muted);
     border-top:1px solid var(--line);
-    margin-top:30px;
+    margin-top:40px;
 }
 
+/* MOBILE */
 @media(max-width:900px){
-    .container{grid-template-columns:1fr;}
     .sidebar{display:none;}
+    .main{margin:0;}
 }
 </style>
 </head>
@@ -183,107 +162,90 @@ footer{
 
 <!-- TOP BAR -->
 <div class="topbar">
-    <div class="brand">Naxus Energy AI</div>
-    <div class="status">🟢 AI System Active — Sovereign Mode</div>
+    <div class="brand">Naxus Energy OS</div>
+    <div class="status">🟢 النظام يعمل — وضع سيادي نشط</div>
 </div>
-
-<div class="container">
 
 <!-- SIDEBAR -->
 <div class="sidebar">
-    <h3>AI System</h3>
-    <a>📊 Dashboard</a>
-    <a>🤖 AI Engine</a>
-    <a>⚡ Energy Flow</a>
-    <a>🌍 Global Grid</a>
-    <a>🛢 Oil Intelligence</a>
-    <a>📡 Reports</a>
+    <h3>النظام</h3>
+    <a href="#">📊 لوحة التحكم</a>
+    <a href="#">⚡ الطاقة</a>
+    <a href="#">🛢 النفط والغاز</a>
+    <a href="#">🌍 العمليات العالمية</a>
+    <a href="#">🏗 المشاريع</a>
+    <a href="#">📡 التقارير</a>
 </div>
 
 <!-- MAIN -->
 <div class="main">
 
     <div class="alert">
-        ⚠ AI Monitoring: Energy demand stable across all regions
+        ⚠ تحديث سيادي: جميع أنظمة الطاقة تعمل ضمن السعة الطبيعية
     </div>
 
-    <div class="ai-box">
-        <div class="ai-title">🧠 AI Energy Core</div>
-        <p id="aiText">تحليل البيانات...</p>
-        <button onclick="runAI()">تشغيل تحليل ذكي</button>
-    </div>
+    <h2>لوحة التحكم السيادية</h2>
 
-    <h2>لوحة التحكم السيادية الذكية</h2>
-
+    <!-- KPIs -->
     <div class="grid">
         <div class="card">
-            <div class="kpi" id="energy">8.9M</div>
-            إنتاج الطاقة
+            <div class="kpi">8.9M</div>
+            إنتاج الطاقة اليومي
         </div>
-
-        <div class="card">
-            <div class="kpi" id="demand">7.4M</div>
-            الطلب العالمي
-        </div>
-
         <div class="card">
             <div class="kpi">14</div>
             دولة تشغيل
         </div>
-
         <div class="card">
-            <div class="kpi" id="eff">99.1%</div>
-            كفاءة النظام
+            <div class="kpi">36</div>
+            مشاريع نشطة
+        </div>
+        <div class="card">
+            <div class="kpi">99.2%</div>
+            كفاءة التشغيل
         </div>
     </div>
 
     <br>
 
+    <!-- MAP -->
+    <div class="map">
+        <h3>🌍 الخريطة السيادية للعمليات</h3>
+        <p style="color:var(--muted);margin-top:10px;">
+            الشرق الأوسط — إفريقيا — آسيا — أوروبا — مشاريع طاقة استراتيجية
+        </p>
+    </div>
+
+    <br>
+
+    <!-- SYSTEM MODULES -->
     <div class="grid">
-        <div class="card">⚡ تدفق الطاقة: مستقر</div>
-        <div class="card">🛢 النفط: إنتاج عالي</div>
-        <div class="card">🌍 الشبكة: عالمية نشطة</div>
-        <div class="card">🧠 AI: وضع التنبؤ نشط</div>
+        <div class="card">
+            ⚡ إدارة الطاقة
+            <p style="color:var(--muted);font-size:13px;">مراقبة الإنتاج والتوزيع</p>
+        </div>
+
+        <div class="card">
+            🛢 إدارة النفط
+            <p style="color:var(--muted);font-size:13px;">استخراج ومعالجة الخام</p>
+        </div>
+
+        <div class="card">
+            🌍 العمليات الدولية
+            <p style="color:var(--muted);font-size:13px;">تنسيق الدول والمشاريع</p>
+        </div>
+
+        <div class="card">
+            📊 التحليل السيادي
+            <p style="color:var(--muted);font-size:13px;">تقارير أداء استراتيجية</p>
+        </div>
     </div>
 
     <footer>
-        © 2026 Naxus Energy AI — Sovereign Intelligent Energy System
+        © 2026 Naxus Energy OS — Sovereign Energy Control System
     </footer>
 
 </div>
-
-</div>
-
-<script>
-
-// AI Simulation Engine
-function runAI(){
-    let demand = Math.floor(7000 + Math.random()*1500);
-    let energy = Math.floor(8000 + Math.random()*1200);
-    let eff = (95 + Math.random()*4).toFixed(1);
-
-    document.getElementById("energy").innerText = energy + "M";
-    document.getElementById("demand").innerText = demand + "M";
-    document.getElementById("eff").innerText = eff + "%";
-
-    let status = "";
-
-    if(energy > demand){
-        status = "🟢 النظام مستقر — فائض طاقة";
-    }else{
-        status = "🟡 تنبيه — الطلب يقترب من الإنتاج";
-    }
-
-    document.getElementById("aiText").innerText = 
-        "AI Analysis: " + status + " | توقع 24h: استقرار عالي";
-}
-
-// auto AI updates
-setInterval(runAI, 6000);
-
-runAI();
-
-</script>
 
 </body>
 </html>
