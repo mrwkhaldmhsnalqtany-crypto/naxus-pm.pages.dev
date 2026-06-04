@@ -3,16 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Naxus Energy | Sovereign Energy Authority</title>
+<title>Naxus Energy | Global Energy Company</title>
 
 <style>
 :root{
-    --bg:#050814;
-    --card:#0f1728;
-    --text:#eef3ff;
-    --muted:#a8b3c7;
-    --accent:#c8a85a; /* ذهبي سيادي */
-    --line:rgba(255,255,255,0.06);
+    --bg:#070b14;
+    --card:#111a2a;
+    --text:#e8eefc;
+    --muted:#a9b4c7;
+    --accent:#00b3a4;
 }
 
 *{
@@ -25,7 +24,7 @@
 body{
     background:var(--bg);
     color:var(--text);
-    line-height:1.7;
+    line-height:1.6;
 }
 
 /* NAV */
@@ -36,25 +35,23 @@ nav{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:18px 45px;
-    background:rgba(5,8,20,0.75);
-    backdrop-filter:blur(14px);
-    border-bottom:1px solid var(--line);
+    padding:16px 35px;
+    background:rgba(7,11,20,0.7);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid rgba(255,255,255,0.05);
     z-index:1000;
 }
 
 nav h2{
     color:var(--accent);
-    letter-spacing:2px;
-    font-weight:600;
+    letter-spacing:1px;
 }
 
 nav a{
     color:var(--muted);
-    margin:0 14px;
+    margin:0 12px;
     text-decoration:none;
     font-size:14px;
-    transition:0.3s;
 }
 
 nav a:hover{
@@ -69,74 +66,58 @@ nav a:hover{
     justify-content:center;
     align-items:center;
     text-align:center;
-    padding:0 20px;
-    background:
-      radial-gradient(circle at top,#1a1430,#050814);
+    background:radial-gradient(circle at top,#0d2b2a,#05070f);
+    padding:20px;
 }
 
 .hero h1{
-    font-size:56px;
-    letter-spacing:1px;
+    font-size:52px;
+    color:var(--text);
 }
 
 .hero p{
-    margin-top:18px;
+    margin-top:15px;
     color:var(--muted);
-    max-width:750px;
+    max-width:650px;
 }
 
 .btn{
-    margin-top:28px;
-    padding:14px 32px;
-    border:1px solid var(--accent);
-    background:transparent;
-    color:var(--accent);
-    border-radius:6px;
-    cursor:pointer;
-    transition:0.3s;
-    letter-spacing:1px;
-}
-
-.btn:hover{
+    margin-top:25px;
+    padding:13px 28px;
+    border:none;
     background:var(--accent);
-    color:#000;
+    color:black;
+    font-weight:bold;
+    border-radius:8px;
+    cursor:pointer;
 }
 
 /* SECTIONS */
 section{
-    padding:120px 45px;
+    padding:110px 35px;
     max-width:1200px;
     margin:auto;
-    opacity:0;
-    transform:translateY(40px);
-    transition:1s;
-}
-
-section.show{
-    opacity:1;
-    transform:translateY(0);
 }
 
 h2{
-    font-size:30px;
+    font-size:28px;
     margin-bottom:25px;
     color:var(--text);
-    letter-spacing:1px;
 }
 
 /* GRID */
 .grid{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-    gap:22px;
+    gap:20px;
 }
 
 /* CARD */
 .card{
     background:var(--card);
-    padding:26px;
-    border-radius:10px;
-    border:1px solid var(--line);
+    padding:25px;
+    border-radius:12px;
+    border:1px solid rgba(255,255,255,0.05);
     transition:0.3s;
 }
 
@@ -150,14 +131,6 @@ h2{
     font-size:14px;
 }
 
-/* STATE STRIP (Governance feel) */
-.strip{
-    background:linear-gradient(90deg,#0f1728,#0b1220);
-    padding:25px;
-    border-left:3px solid var(--accent);
-    border-radius:8px;
-}
-
 /* STATS */
 .stats{
     display:grid;
@@ -167,23 +140,22 @@ h2{
 
 .stat-box{
     background:var(--card);
-    padding:28px;
+    padding:25px;
     text-align:center;
-    border-radius:10px;
-    border:1px solid var(--line);
+    border-radius:12px;
 }
 
 .stat{
-    font-size:34px;
+    font-size:32px;
     color:var(--accent);
 }
 
 /* FOOTER */
 footer{
     text-align:center;
-    padding:35px;
+    padding:30px;
     color:var(--muted);
-    border-top:1px solid var(--line);
+    border-top:1px solid rgba(255,255,255,0.05);
 }
 
 /* ANIMATION */
@@ -200,7 +172,7 @@ section.show{
 
 /* MOBILE */
 @media(max-width:768px){
-    .hero h1{font-size:36px;}
+    .hero h1{font-size:34px;}
     nav a{display:none;}
 }
 </style>
@@ -209,83 +181,98 @@ section.show{
 <body>
 
 <nav>
-    <h2>Naxus Authority</h2>
+    <h2>Naxus Energy</h2>
     <div>
-        <a href="#about">الهوية</a>
-        <a href="#mandate">الولاية</a>
-        <a href="#operations">العمليات</a>
-        <a href="#global">النطاق</a>
-        <a href="#stats">المؤشرات</a>
+        <a href="#about">عن الشركة</a>
+        <a href="#energy">الطاقة</a>
+        <a href="#projects">المشاريع</a>
+        <a href="#sustainability">الاستدامة</a>
+        <a href="#contact">تواصل</a>
     </div>
 </nav>
 
 <!-- HERO -->
 <div class="hero">
-    <h1>هيئة الطاقة السيادية</h1>
-    <p>كيان وطني/سيادي لإدارة موارد الطاقة والاستثمارات الاستراتيجية بمعايير حوكمة عالمية</p>
-    <button class="btn">الدخول إلى النظام السيادي</button>
+    <h1>طاقة تقود المستقبل</h1>
+    <p>شركة عالمية متخصصة في النفط والغاز والطاقة المتجددة وتطوير البنية التحتية للطاقة</p>
+    <button class="btn">استكشف أعمالنا</button>
 </div>
 
 <!-- ABOUT -->
 <section id="about">
-    <h2>الهوية المؤسسية</h2>
-    <div class="strip">
-        Naxus Energy Sovereign Authority — كيان سيادي مسؤول عن إدارة الطاقة، الموارد الاستراتيجية،
-        وتطوير البنية التحتية للطاقة على مستوى وطني ودولي.
-    </div>
+    <h2>عن الشركة</h2>
+    <p class="muted">
+        Naxus Energy هي شركة طاقة عالمية تعمل في استكشاف وإنتاج النفط والغاز، 
+        وتطوير حلول الطاقة المستدامة لتلبية احتياجات المستقبل.
+    </p>
 </section>
 
-<!-- MANDATE -->
-<section id="mandate">
-    <h2>الولاية الاستراتيجية</h2>
+<!-- ENERGY -->
+<section id="energy">
+    <h2>القطاعات</h2>
     <div class="grid">
-        <div class="card">🛢 إدارة الموارد النفطية الوطنية</div>
-        <div class="card">⚡ أمن الطاقة والاستدامة</div>
-        <div class="card">🏗 تطوير مشاريع سيادية كبرى</div>
-        <div class="card">🌍 شراكات دولية استراتيجية</div>
+        <div class="card">
+            🛢️ النفط والغاز
+            <p class="muted">استخراج وإنتاج وإدارة الموارد النفطية.</p>
+        </div>
+        <div class="card">
+            ⚡ الطاقة المتجددة
+            <p class="muted">مشاريع الطاقة الشمسية والرياح.</p>
+        </div>
+        <div class="card">
+            🏗 البنية التحتية
+            <p class="muted">تطوير منشآت الطاقة والمصافي.</p>
+        </div>
     </div>
 </section>
 
-<!-- OPERATIONS -->
-<section id="operations">
-    <h2>العمليات السيادية</h2>
+<!-- PROJECTS -->
+<section id="projects">
+    <h2>المشاريع العالمية</h2>
     <div class="grid">
-        <div class="card">إنتاج النفط الخام</div>
-        <div class="card">تكرير ومعالجة الطاقة</div>
-        <div class="card">إدارة شبكات الطاقة</div>
-        <div class="card">مشاريع البنية التحتية</div>
+        <div class="card">حقل نفطي - الشرق الأوسط</div>
+        <div class="card">محطة طاقة شمسية كبرى</div>
+        <div class="card">مصفاة معالجة متقدمة</div>
     </div>
 </section>
 
-<!-- GLOBAL -->
-<section id="global">
-    <h2>النطاق الجغرافي</h2>
-    <div class="strip">
-        عمليات استراتيجية تمتد عبر: الشرق الأوسط — إفريقيا — آسيا — أوروبا
-    </div>
+<!-- SUSTAINABILITY -->
+<section id="sustainability">
+    <h2>الاستدامة</h2>
+    <p class="muted">
+        نلتزم بتقليل الانبعاثات الكربونية وتطوير حلول طاقة نظيفة تدعم مستقبل مستدام.
+    </p>
 </section>
 
 <!-- STATS -->
-<section id="stats">
-    <h2>المؤشرات السيادية</h2>
+<section>
+    <h2>الأداء العالمي</h2>
     <div class="stats">
         <div class="stat-box">
-            <div class="stat">32+</div>
-            مشروع استراتيجي
+            <div class="stat">22+</div>
+            مشاريع طاقة
         </div>
         <div class="stat-box">
-            <div class="stat">8.7M</div>
-            إنتاج طاقة
+            <div class="stat">5.8M</div>
+            إنتاج سنوي
         </div>
         <div class="stat-box">
-            <div class="stat">14</div>
-            دولة تشغيل
+            <div class="stat">9</div>
+            دول تشغيل
         </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+    <h2>تواصل معنا</h2>
+    <div class="card">
+        info@naxusenergy.com
     </div>
 </section>
 
 <footer>
-    © 2026 Naxus Energy Sovereign Authority
+    © 2026 Naxus Energy — Global Energy Corporation
 </footer>
 
 <script>
