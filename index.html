@@ -3,169 +3,177 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Energy State OS</title>
+<title>Naxus Energy Galaxy AI</title>
 
 <style>
 body{
     margin:0;
+    overflow:hidden;
+    background:#030510;
     font-family:Arial;
-    background:#050814;
-    color:#eaf2ff;
 }
 
-header{
-    padding:15px 20px;
-    background:#0e1626;
-    border-bottom:1px solid rgba(255,255,255,0.08);
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-header h1{
-    color:#00ffd0;
-    font-size:18px;
-}
-
-.container{
-    padding:20px;
-}
-
-.grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:15px;
-}
-
-.card{
-    background:#0e1626;
-    padding:18px;
+#ui{
+    position:fixed;
+    top:15px;
+    right:15px;
+    z-index:10;
+    background:rgba(0,0,0,0.4);
+    padding:12px 15px;
     border-radius:10px;
-    border:1px solid rgba(255,255,255,0.08);
-}
-
-.kpi{
-    font-size:26px;
+    border:1px solid rgba(255,255,255,0.1);
+    backdrop-filter:blur(10px);
     color:#00ffd0;
-    font-weight:bold;
 }
 
-.status{
-    padding:10px;
-    margin-bottom:15px;
-    border-radius:8px;
-    background:rgba(0,255,208,0.08);
-    border:1px solid rgba(0,255,208,0.3);
+#status{
     color:#9fb0c8;
+    font-size:13px;
+    margin-top:5px;
 }
 
-.alert{
-    padding:10px;
-    border-radius:8px;
-    margin-top:10px;
-}
-
-.good{border:1px solid #00ffd0;color:#00ffd0;}
-.warn{border:1px solid #ffcc66;color:#ffcc66;}
-.bad{border:1px solid #ff5c7a;color:#ff5c7a;}
-
-button{
-    margin-top:10px;
-    padding:10px 14px;
-    border:none;
-    border-radius:8px;
-    background:#00ffd0;
-    font-weight:bold;
-    cursor:pointer;
+canvas{
+    display:block;
 }
 </style>
 </head>
 
 <body>
 
-<header>
-<h1>🏛 Energy State OS</h1>
-<div id="mode">LIVE SYSTEM</div>
-</header>
-
-<div class="container">
-
-<div class="status" id="status">
-النظام يعمل في الوضع السيادي — مراقبة الطاقة جارية...
+<div id="ui">
+🧠 Energy Galaxy AI
+<div id="status">Initializing galactic energy field...</div>
 </div>
 
-<div class="grid">
+<canvas id="c"></canvas>
 
-<div class="card">
-<div class="kpi" id="production">9000</div>
-الإنتاج (MW)
-</div>
-
-<div class="card">
-<div class="kpi" id="demand">8500</div>
-الطلب (MW)
-</div>
-
-<div class="card">
-<div class="kpi" id="reserve">500</div>
-الاحتياطي
-</div>
-
-<div class="card">
-<div class="kpi" id="efficiency">99%</div>
-الكفاءة
-</div>
-
-</div>
-
-<div class="card" style="margin-top:15px;">
-<h3>🧠 AI القرار السيادي</h3>
-<div id="decision">جارٍ تحليل النظام...</div>
-<button onclick="runDecision()">تشغيل تحليل فوري</button>
-<div id="alert" class="alert good">النظام مستقر</div>
-</div>
-
-</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
 <script>
 
-function runDecision(){
+// Scene
+const scene = new THREE.Scene();
 
-    let production = Math.floor(8500 + Math.random()*1500);
-    let demand = Math.floor(8000 + Math.random()*1200);
+// Camera
+const camera = new THREE.PerspectiveCamera(
+    75,
+    window.innerWidth/window.innerHeight,
+    0.1,
+    2000
+);
+camera.position.z = 300;
 
-    let reserve = production - demand;
-    let efficiency = (97 + Math.random()*2).toFixed(1);
+// Renderer
+const renderer = new THREE.WebGLRenderer({
+    canvas: document.getElementById("c"),
+    antialias:true
+});
+renderer.setSize(window.innerWidth, window.innerHeight);
 
-    let decision = "";
-    let alertBox = document.getElementById("alert");
+// Galaxy group
+const galaxy = new THREE.Group();
+scene.add(galaxy);
 
-    if(reserve < 0){
-        decision = "⚠ عجز في الطاقة — تفعيل استيراد فوري أو تخفيض الطلب";
-        alertBox.className = "alert bad";
-        alertBox.innerText = "خطر: الطلب أعلى من الإنتاج";
-    }
-    else if(reserve < 500){
-        decision = "🟡 توازن حساس — رفع الإنتاج بنسبة 5%";
-        alertBox.className = "alert warn";
-        alertBox.innerText = "تحذير: احتياطي منخفض";
-    }
-    else{
-        decision = "🟢 النظام مستقر — تخزين الفائض في الشبكة الوطنية";
-        alertBox.className = "alert good";
-        alertBox.innerText = "استقرار سيادي كامل";
-    }
+// Energy stars (universes)
+let stars = [];
 
-    document.getElementById("production").innerText = production;
-    document.getElementById("demand").innerText = demand;
-    document.getElementById("reserve").innerText = reserve;
-    document.getElementById("efficiency").innerText = efficiency + "%";
-    document.getElementById("decision").innerText = decision;
+function createStar(){
 
+    let geometry = new THREE.SphereGeometry(2.5, 12, 12);
+    let material = new THREE.MeshBasicMaterial({color:0x00ffd0});
+
+    let star = new THREE.Mesh(geometry, material);
+
+    star.position.x = (Math.random()-0.5)*600;
+    star.position.y = (Math.random()-0.5)*600;
+    star.position.z = (Math.random()-0.5)*600;
+
+    star.userData = {
+        vx:(Math.random()-0.5)*0.4,
+        vy:(Math.random()-0.5)*0.4,
+        vz:(Math.random()-0.5)*0.4,
+        energy:Math.random()
+    };
+
+    galaxy.add(star);
+    stars.push(star);
 }
 
-setInterval(runDecision,4000);
-runDecision();
+// create galaxy stars
+for(let i=0;i<200;i++){
+    createStar();
+}
+
+// light core
+const light = new THREE.PointLight(0x00ffd0,2);
+light.position.set(0,0,0);
+scene.add(light);
+
+// animation loop
+function animate(){
+
+    requestAnimationFrame(animate);
+
+    stars.forEach(s=>{
+
+        s.position.x += s.userData.vx;
+        s.position.y += s.userData.vy;
+        s.position.z += s.userData.vz;
+
+        // bounds
+        if(Math.abs(s.position.x)>600) s.userData.vx *= -1;
+        if(Math.abs(s.position.y)>600) s.userData.vy *= -1;
+        if(Math.abs(s.position.z)>600) s.userData.vz *= -1;
+
+        // energy drift
+        s.userData.energy += (Math.random()-0.5)*0.02;
+        s.userData.energy = Math.max(0,Math.min(1,s.userData.energy));
+
+        // size based on energy
+        let scale = 1 + s.userData.energy*2;
+        s.scale.set(scale,scale,scale);
+
+        // glow color shift
+        let g = 0.6 + s.userData.energy*0.4;
+        s.material.color.setRGB(0,1,g);
+
+    });
+
+    // galaxy rotation (cosmic motion)
+    galaxy.rotation.y += 0.0015;
+    galaxy.rotation.x += 0.0008;
+
+    renderer.render(scene,camera);
+}
+
+animate();
+
+// AI Core
+function updateAI(){
+
+    let avg = stars.reduce((a,b)=>a+b.userData.energy,0)/stars.length;
+
+    let status = "";
+
+    if(avg > 0.7){
+        status = "🟡 تمدد مجري — نشاط طاقي عالي";
+    }else if(avg < 0.3){
+        status = "🔴 انكماش طاقي — إعادة توازن المجرة";
+    }else{
+        status = "🟢 مجرة الطاقة مستقرة — النظام في توازن كوني";
+    }
+
+    document.getElementById("status").innerText = status;
+}
+
+setInterval(updateAI,2000);
+
+// resize
+window.addEventListener("resize",()=>{
+    camera.aspect = window.innerWidth/window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+});
 
 </script>
 
