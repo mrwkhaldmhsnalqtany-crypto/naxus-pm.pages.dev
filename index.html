@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Naxus Energy | Global Energy Company</title>
+<title>Naxus PM | Fortune 500 Level</title>
 
 <style>
 :root{
-    --bg:#070b14;
-    --card:#111a2a;
-    --text:#e8eefc;
-    --muted:#a9b4c7;
-    --accent:#00b3a4;
+    --bg:#0a0f1a;
+    --card:#121a2a;
+    --text:#e6e6e6;
+    --muted:#aab3c5;
+    --accent:#4da3ff;
 }
 
 *{
@@ -35,8 +35,8 @@ nav{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:16px 35px;
-    background:rgba(7,11,20,0.7);
+    padding:16px 40px;
+    background:rgba(10,15,26,0.7);
     backdrop-filter:blur(12px);
     border-bottom:1px solid rgba(255,255,255,0.05);
     z-index:1000;
@@ -44,14 +44,16 @@ nav{
 
 nav h2{
     color:var(--accent);
+    font-weight:600;
     letter-spacing:1px;
 }
 
 nav a{
     color:var(--muted);
-    margin:0 12px;
+    margin:0 14px;
     text-decoration:none;
     font-size:14px;
+    transition:0.3s;
 }
 
 nav a:hover{
@@ -66,43 +68,57 @@ nav a:hover{
     justify-content:center;
     align-items:center;
     text-align:center;
-    background:radial-gradient(circle at top,#0d2b2a,#05070f);
-    padding:20px;
+    padding:0 20px;
 }
 
 .hero h1{
-    font-size:52px;
-    color:var(--text);
+    font-size:54px;
+    font-weight:600;
+    letter-spacing:1px;
 }
 
 .hero p{
     margin-top:15px;
     color:var(--muted);
-    max-width:650px;
+    max-width:600px;
 }
 
 .btn{
     margin-top:25px;
-    padding:13px 28px;
-    border:none;
+    padding:12px 26px;
+    border:1px solid var(--accent);
+    background:transparent;
+    color:var(--accent);
+    border-radius:6px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.btn:hover{
     background:var(--accent);
     color:black;
-    font-weight:bold;
-    border-radius:8px;
-    cursor:pointer;
 }
 
 /* SECTIONS */
 section{
-    padding:110px 35px;
+    padding:110px 40px;
     max-width:1200px;
     margin:auto;
+    opacity:0;
+    transform:translateY(40px);
+    transition:1s;
+}
+
+section.show{
+    opacity:1;
+    transform:translateY(0);
 }
 
 h2{
     font-size:28px;
-    margin-bottom:25px;
+    margin-bottom:20px;
     color:var(--text);
+    font-weight:500;
 }
 
 /* GRID */
@@ -115,15 +131,15 @@ h2{
 /* CARD */
 .card{
     background:var(--card);
-    padding:25px;
-    border-radius:12px;
+    padding:26px;
+    border-radius:10px;
     border:1px solid rgba(255,255,255,0.05);
     transition:0.3s;
 }
 
 .card:hover{
     border-color:var(--accent);
-    transform:translateY(-6px);
+    transform:translateY(-5px);
 }
 
 .muted{
@@ -141,38 +157,27 @@ h2{
 .stat-box{
     background:var(--card);
     padding:25px;
+    border-radius:10px;
     text-align:center;
-    border-radius:12px;
 }
 
 .stat{
-    font-size:32px;
+    font-size:30px;
     color:var(--accent);
 }
 
 /* FOOTER */
 footer{
-    text-align:center;
     padding:30px;
+    text-align:center;
     color:var(--muted);
     border-top:1px solid rgba(255,255,255,0.05);
 }
 
-/* ANIMATION */
-section{
-    opacity:0;
-    transform:translateY(40px);
-    transition:1s;
-}
-
-section.show{
-    opacity:1;
-    transform:translateY(0);
-}
-
 /* MOBILE */
 @media(max-width:768px){
-    .hero h1{font-size:34px;}
+    .hero h1{font-size:36px;}
+    nav{padding:12px 20px;}
     nav a{display:none;}
 }
 </style>
@@ -181,84 +186,76 @@ section.show{
 <body>
 
 <nav>
-    <h2>Naxus Energy</h2>
+    <h2>Naxus PM</h2>
     <div>
-        <a href="#about">عن الشركة</a>
-        <a href="#energy">الطاقة</a>
+        <a href="#about">من نحن</a>
+        <a href="#services">الأعمال</a>
         <a href="#projects">المشاريع</a>
-        <a href="#sustainability">الاستدامة</a>
+        <a href="#stats">التقارير</a>
         <a href="#contact">تواصل</a>
     </div>
 </nav>
 
 <!-- HERO -->
 <div class="hero">
-    <h1>طاقة تقود المستقبل</h1>
-    <p>شركة عالمية متخصصة في النفط والغاز والطاقة المتجددة وتطوير البنية التحتية للطاقة</p>
-    <button class="btn">استكشف أعمالنا</button>
+    <h1>قيادة مستقبل الطاقة والاستثمار</h1>
+    <p>منصة مؤسسية لإدارة المشاريع والاستثمارات وفق معايير عالمية</p>
+    <button class="btn">استكشف المنصة</button>
 </div>
 
 <!-- ABOUT -->
 <section id="about">
-    <h2>عن الشركة</h2>
+    <h2>من نحن</h2>
     <p class="muted">
-        Naxus Energy هي شركة طاقة عالمية تعمل في استكشاف وإنتاج النفط والغاز، 
-        وتطوير حلول الطاقة المستدامة لتلبية احتياجات المستقبل.
+        Naxus PM هي منصة مؤسسية متخصصة في إدارة المشاريع والاستثمار والطاقة، 
+        تهدف إلى تقديم حلول استراتيجية بمعايير عالمية.
     </p>
 </section>
 
-<!-- ENERGY -->
-<section id="energy">
-    <h2>القطاعات</h2>
+<!-- SERVICES -->
+<section id="services">
+    <h2>الأعمال</h2>
     <div class="grid">
         <div class="card">
-            🛢️ النفط والغاز
-            <p class="muted">استخراج وإنتاج وإدارة الموارد النفطية.</p>
+            <h3>الاستثمار المؤسسي</h3>
+            <p class="muted">إدارة رؤوس الأموال بطرق استراتيجية طويلة المدى.</p>
         </div>
         <div class="card">
-            ⚡ الطاقة المتجددة
-            <p class="muted">مشاريع الطاقة الشمسية والرياح.</p>
+            <h3>الطاقة</h3>
+            <p class="muted">مشاريع النفط والغاز والطاقة المتجددة.</p>
         </div>
         <div class="card">
-            🏗 البنية التحتية
-            <p class="muted">تطوير منشآت الطاقة والمصافي.</p>
+            <h3>إدارة المشاريع</h3>
+            <p class="muted">تنفيذ المشاريع الكبرى وفق معايير عالمية.</p>
         </div>
     </div>
 </section>
 
 <!-- PROJECTS -->
 <section id="projects">
-    <h2>المشاريع العالمية</h2>
+    <h2>المشاريع</h2>
     <div class="grid">
-        <div class="card">حقل نفطي - الشرق الأوسط</div>
-        <div class="card">محطة طاقة شمسية كبرى</div>
-        <div class="card">مصفاة معالجة متقدمة</div>
+        <div class="card">مشروع تطوير الطاقة - مأرب</div>
+        <div class="card">منشأة نفطية - شبوة</div>
+        <div class="card">بنية تحتية استراتيجية - حضرموت</div>
     </div>
 </section>
 
-<!-- SUSTAINABILITY -->
-<section id="sustainability">
-    <h2>الاستدامة</h2>
-    <p class="muted">
-        نلتزم بتقليل الانبعاثات الكربونية وتطوير حلول طاقة نظيفة تدعم مستقبل مستدام.
-    </p>
-</section>
-
 <!-- STATS -->
-<section>
-    <h2>الأداء العالمي</h2>
+<section id="stats">
+    <h2>التقارير</h2>
     <div class="stats">
         <div class="stat-box">
-            <div class="stat">22+</div>
-            مشاريع طاقة
+            <div class="stat">18+</div>
+            مشاريع نشطة
         </div>
         <div class="stat-box">
-            <div class="stat">5.8M</div>
-            إنتاج سنوي
+            <div class="stat">4.1M</div>
+            إجمالي الاستثمارات
         </div>
         <div class="stat-box">
-            <div class="stat">9</div>
-            دول تشغيل
+            <div class="stat">7</div>
+            قطاعات تشغيل
         </div>
     </div>
 </section>
@@ -267,12 +264,12 @@ section.show{
 <section id="contact">
     <h2>تواصل معنا</h2>
     <div class="card">
-        info@naxusenergy.com
+        info@naxuspm.com
     </div>
 </section>
 
 <footer>
-    © 2026 Naxus Energy — Global Energy Corporation
+    © 2026 Naxus PM — Corporate Platform
 </footer>
 
 <script>
