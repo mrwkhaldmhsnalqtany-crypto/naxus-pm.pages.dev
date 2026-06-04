@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Naxus PM | Global Enterprise</title>
+<title>Naxus PM</title>
 
 <style>
 *{
@@ -14,7 +14,7 @@
 }
 
 body{
-    background:#070d1a;
+    background:#0b1220;
     color:white;
     overflow-x:hidden;
 }
@@ -27,28 +27,26 @@ nav{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:18px 30px;
-    background:rgba(10,15,30,0.4);
-    backdrop-filter:blur(15px);
+    padding:15px 25px;
+    background:rgba(10,15,30,0.6);
+    backdrop-filter:blur(10px);
     z-index:1000;
     transition:0.3s;
 }
 
 nav.scrolled{
     background:#0b1220;
-    box-shadow:0 5px 20px rgba(0,0,0,0.5);
+    box-shadow:0 5px 20px rgba(0,0,0,0.3);
 }
 
 nav h2{
     color:#00c2ff;
-    letter-spacing:1px;
 }
 
 nav a{
     color:white;
-    margin:0 12px;
+    margin:0 10px;
     text-decoration:none;
-    font-size:14px;
     transition:0.3s;
 }
 
@@ -64,29 +62,30 @@ nav a:hover{
     justify-content:center;
     align-items:center;
     text-align:center;
-    background:radial-gradient(circle at top,#1b3cff,#050816);
+    background:linear-gradient(135deg,#00c2ff,#2d6bff);
 }
 
 .hero h1{
-    font-size:52px;
+    font-size:45px;
     animation:fadeDown 1s ease;
 }
 
 .hero p{
-    margin-top:15px;
-    opacity:0.8;
+    margin-top:10px;
+    font-size:18px;
+    opacity:0.9;
     animation:fadeUp 1s ease;
 }
 
 .btn{
-    margin-top:25px;
-    padding:14px 28px;
+    margin-top:20px;
+    padding:12px 25px;
     border:none;
-    border-radius:10px;
-    background:linear-gradient(90deg,#00c2ff,#2d6bff);
-    color:white;
-    font-weight:bold;
+    border-radius:8px;
     cursor:pointer;
+    background:white;
+    color:black;
+    font-weight:bold;
     transition:0.3s;
 }
 
@@ -96,10 +95,10 @@ nav a:hover{
 
 /* SECTIONS */
 section{
-    padding:120px 25px;
+    padding:100px 20px;
     text-align:center;
     opacity:0;
-    transform:translateY(60px);
+    transform:translateY(50px);
     transition:1s;
 }
 
@@ -108,65 +107,47 @@ section.show{
     transform:translateY(0);
 }
 
-/* TITLES */
-h2{
-    font-size:32px;
-    margin-bottom:20px;
-    color:#00c2ff;
-}
-
-/* GRID */
+/* CARDS */
 .grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-    gap:25px;
-    margin-top:40px;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+    margin-top:30px;
 }
 
-/* CARDS */
 .card{
-    background:linear-gradient(145deg,#121c33,#0e1629);
-    padding:30px;
-    border-radius:14px;
-    transition:0.4s;
-    border:1px solid rgba(255,255,255,0.05);
+    background:#16233d;
+    padding:25px;
+    border-radius:12px;
+    transition:0.3s;
 }
 
 .card:hover{
-    transform:translateY(-10px);
-    border-color:#00c2ff;
-}
-
-/* STATS */
-.stat{
-    font-size:28px;
-    color:#00c2ff;
-    font-weight:bold;
+    transform:translateY(-8px);
+    background:#1b2a4a;
 }
 
 /* FOOTER */
 footer{
-    background:#050816;
+    background:#0a0f1e;
     text-align:center;
-    padding:25px;
-    margin-top:50px;
-    opacity:0.8;
+    padding:20px;
 }
 
 /* ANIMATIONS */
 @keyframes fadeDown{
-    from{opacity:0; transform:translateY(-40px);}
+    from{opacity:0; transform:translateY(-30px);}
     to{opacity:1; transform:translateY(0);}
 }
 
 @keyframes fadeUp{
-    from{opacity:0; transform:translateY(40px);}
+    from{opacity:0; transform:translateY(30px);}
     to{opacity:1; transform:translateY(0);}
 }
 
 /* MOBILE */
 @media(max-width:768px){
-    .hero h1{font-size:34px;}
+    .hero h1{font-size:32px;}
     nav a{display:none;}
 }
 </style>
@@ -179,52 +160,41 @@ footer{
     <div>
         <a href="#about">من نحن</a>
         <a href="#services">الخدمات</a>
-        <a href="#projects">المشاريع</a>
-        <a href="#stats">الأرقام</a>
+        <a href="#stats">الإنجازات</a>
         <a href="#contact">تواصل</a>
     </div>
 </nav>
 
 <!-- HERO -->
 <div class="hero">
-    <h1>نقود مستقبل الطاقة والاستثمار</h1>
-    <p>منصة Naxus PM - إدارة مشاريع بمعايير عالمية</p>
+    <h1>نحو مستقبل الطاقة والاستثمار</h1>
+    <p>شركة Naxus PM - إدارة مشاريع عالمية</p>
     <button class="btn">ابدأ الآن</button>
 </div>
 
 <!-- ABOUT -->
 <section id="about">
     <h2>من نحن</h2>
-    <p>شركة متخصصة في إدارة المشاريع، الطاقة، والاستثمار وفق رؤية عالمية حديثة.</p>
+    <p>نقدم حلول متقدمة في إدارة المشاريع والطاقة والاستثمار بأسلوب عالمي حديث.</p>
 </section>
 
 <!-- SERVICES -->
 <section id="services">
     <h2>خدماتنا</h2>
     <div class="grid">
-        <div class="card">💰 الاستثمار المؤسسي</div>
-        <div class="card">⚡ مشاريع الطاقة</div>
-        <div class="card">🏗 إدارة المشاريع الكبرى</div>
-    </div>
-</section>
-
-<!-- PROJECTS -->
-<section id="projects">
-    <h2>المشاريع</h2>
-    <div class="grid">
-        <div class="card">حقل نفطي - مأرب</div>
-        <div class="card">محطة طاقة - شبوة</div>
-        <div class="card">بنية تحتية - حضرموت</div>
+        <div class="card">💰 الاستثمار الذكي</div>
+        <div class="card">⚡ الطاقة المتجددة</div>
+        <div class="card">📊 إدارة المشاريع</div>
     </div>
 </section>
 
 <!-- STATS -->
 <section id="stats">
-    <h2>الأرقام</h2>
+    <h2>إنجازاتنا</h2>
     <div class="grid">
-        <div class="card"><div class="stat">15+</div>مشروع نشط</div>
-        <div class="card"><div class="stat">3.2M</div>استثمارات</div>
-        <div class="card"><div class="stat">6</div>قطاعات طاقة</div>
+        <div class="card">12+ مشروع</div>
+        <div class="card">5 قطاعات</div>
+        <div class="card">2.5M استثمار</div>
     </div>
 </section>
 
@@ -235,11 +205,11 @@ footer{
 </section>
 
 <footer>
-    © 2026 Naxus PM - Global Enterprise
+    © 2026 Naxus PM - جميع الحقوق محفوظة
 </footer>
 
 <script>
-// navbar effect
+// navbar scroll effect
 window.addEventListener("scroll", ()=>{
     document.getElementById("nav").classList.toggle("scrolled", window.scrollY > 50);
 });
@@ -249,7 +219,9 @@ const sections = document.querySelectorAll("section");
 
 window.addEventListener("scroll", ()=>{
     sections.forEach(sec=>{
-        if(window.scrollY > sec.offsetTop - 500){
+        const top = window.scrollY;
+        const offset = sec.offsetTop - 500;
+        if(top > offset){
             sec.classList.add("show");
         }
     });
