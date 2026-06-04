@@ -3,17 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Naxus Energy OS | Sovereign Control System</title>
+<title>Naxus Energy | Sovereign Energy Authority</title>
 
 <style>
 :root{
-    --bg:#050713;
-    --panel:#0e1626;
-    --panel2:#0b1220;
-    --text:#eaf2ff;
-    --muted:#9fb0c8;
-    --accent:#00d4a6;
-    --warn:#ffcc66;
+    --bg:#050814;
+    --card:#0f1728;
+    --text:#eef3ff;
+    --muted:#a8b3c7;
+    --accent:#c8a85a; /* ذهبي سيادي */
     --line:rgba(255,255,255,0.06);
 }
 
@@ -27,85 +25,116 @@
 body{
     background:var(--bg);
     color:var(--text);
-    overflow-x:hidden;
+    line-height:1.7;
 }
 
-/* TOP BAR */
-.topbar{
+/* NAV */
+nav{
     position:fixed;
     top:0;
     width:100%;
-    height:60px;
-    background:rgba(5,7,19,0.8);
-    backdrop-filter:blur(14px);
-    border-bottom:1px solid var(--line);
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:0 20px;
+    padding:18px 45px;
+    background:rgba(5,8,20,0.75);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
     z-index:1000;
 }
 
-.brand{
+nav h2{
     color:var(--accent);
-    font-weight:bold;
-    letter-spacing:1px;
+    letter-spacing:2px;
+    font-weight:600;
 }
 
-.status{
+nav a{
     color:var(--muted);
-    font-size:13px;
-}
-
-/* SIDEBAR */
-.sidebar{
-    position:fixed;
-    top:60px;
-    right:0;
-    width:240px;
-    height:100%;
-    background:var(--panel);
-    border-left:1px solid var(--line);
-    padding:20px;
-}
-
-.sidebar h3{
-    color:var(--accent);
-    margin-bottom:15px;
-}
-
-.sidebar a{
-    display:block;
-    color:var(--muted);
-    padding:10px;
+    margin:0 14px;
     text-decoration:none;
-    border-radius:6px;
-    margin-bottom:5px;
+    font-size:14px;
     transition:0.3s;
 }
 
-.sidebar a:hover{
-    background:var(--panel2);
+nav a:hover{
     color:var(--accent);
 }
 
-/* MAIN */
-.main{
-    margin-right:260px;
-    padding:80px 20px 40px;
+/* HERO */
+.hero{
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:0 20px;
+    background:
+      radial-gradient(circle at top,#1a1430,#050814);
+}
+
+.hero h1{
+    font-size:56px;
+    letter-spacing:1px;
+}
+
+.hero p{
+    margin-top:18px;
+    color:var(--muted);
+    max-width:750px;
+}
+
+.btn{
+    margin-top:28px;
+    padding:14px 32px;
+    border:1px solid var(--accent);
+    background:transparent;
+    color:var(--accent);
+    border-radius:6px;
+    cursor:pointer;
+    transition:0.3s;
+    letter-spacing:1px;
+}
+
+.btn:hover{
+    background:var(--accent);
+    color:#000;
+}
+
+/* SECTIONS */
+section{
+    padding:120px 45px;
+    max-width:1200px;
+    margin:auto;
+    opacity:0;
+    transform:translateY(40px);
+    transition:1s;
+}
+
+section.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+h2{
+    font-size:30px;
+    margin-bottom:25px;
+    color:var(--text);
+    letter-spacing:1px;
 }
 
 /* GRID */
 .grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:15px;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:22px;
 }
 
 /* CARD */
 .card{
-    background:var(--panel);
-    padding:20px;
+    background:var(--card);
+    padding:26px;
     border-radius:10px;
     border:1px solid var(--line);
     transition:0.3s;
@@ -113,139 +142,163 @@ body{
 
 .card:hover{
     border-color:var(--accent);
-    transform:translateY(-5px);
+    transform:translateY(-6px);
 }
 
-/* KPI */
-.kpi{
-    font-size:28px;
-    color:var(--accent);
-    font-weight:bold;
+.muted{
+    color:var(--muted);
+    font-size:14px;
 }
 
-/* MAP */
-.map{
-    background:linear-gradient(135deg,#0b1d2a,#0a0f1a);
-    padding:30px;
-    border-radius:12px;
+/* STATE STRIP (Governance feel) */
+.strip{
+    background:linear-gradient(90deg,#0f1728,#0b1220);
+    padding:25px;
+    border-left:3px solid var(--accent);
+    border-radius:8px;
+}
+
+/* STATS */
+.stats{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:20px;
+}
+
+.stat-box{
+    background:var(--card);
+    padding:28px;
+    text-align:center;
+    border-radius:10px;
     border:1px solid var(--line);
 }
 
-/* ALERT */
-.alert{
-    background:rgba(255,204,102,0.1);
-    border:1px solid var(--warn);
-    padding:15px;
-    border-radius:10px;
-    margin-bottom:15px;
-    color:var(--warn);
+.stat{
+    font-size:34px;
+    color:var(--accent);
 }
 
 /* FOOTER */
 footer{
     text-align:center;
-    padding:25px;
+    padding:35px;
     color:var(--muted);
     border-top:1px solid var(--line);
-    margin-top:40px;
+}
+
+/* ANIMATION */
+section{
+    opacity:0;
+    transform:translateY(40px);
+    transition:1s;
+}
+
+section.show{
+    opacity:1;
+    transform:translateY(0);
 }
 
 /* MOBILE */
-@media(max-width:900px){
-    .sidebar{display:none;}
-    .main{margin:0;}
+@media(max-width:768px){
+    .hero h1{font-size:36px;}
+    nav a{display:none;}
 }
 </style>
 </head>
 
 <body>
 
-<!-- TOP BAR -->
-<div class="topbar">
-    <div class="brand">Naxus Energy OS</div>
-    <div class="status">🟢 النظام يعمل — وضع سيادي نشط</div>
-</div>
-
-<!-- SIDEBAR -->
-<div class="sidebar">
-    <h3>النظام</h3>
-    <a href="#">📊 لوحة التحكم</a>
-    <a href="#">⚡ الطاقة</a>
-    <a href="#">🛢 النفط والغاز</a>
-    <a href="#">🌍 العمليات العالمية</a>
-    <a href="#">🏗 المشاريع</a>
-    <a href="#">📡 التقارير</a>
-</div>
-
-<!-- MAIN -->
-<div class="main">
-
-    <div class="alert">
-        ⚠ تحديث سيادي: جميع أنظمة الطاقة تعمل ضمن السعة الطبيعية
+<nav>
+    <h2>Naxus Authority</h2>
+    <div>
+        <a href="#about">الهوية</a>
+        <a href="#mandate">الولاية</a>
+        <a href="#operations">العمليات</a>
+        <a href="#global">النطاق</a>
+        <a href="#stats">المؤشرات</a>
     </div>
+</nav>
 
-    <h2>لوحة التحكم السيادية</h2>
+<!-- HERO -->
+<div class="hero">
+    <h1>هيئة الطاقة السيادية</h1>
+    <p>كيان وطني/سيادي لإدارة موارد الطاقة والاستثمارات الاستراتيجية بمعايير حوكمة عالمية</p>
+    <button class="btn">الدخول إلى النظام السيادي</button>
+</div>
 
-    <!-- KPIs -->
+<!-- ABOUT -->
+<section id="about">
+    <h2>الهوية المؤسسية</h2>
+    <div class="strip">
+        Naxus Energy Sovereign Authority — كيان سيادي مسؤول عن إدارة الطاقة، الموارد الاستراتيجية،
+        وتطوير البنية التحتية للطاقة على مستوى وطني ودولي.
+    </div>
+</section>
+
+<!-- MANDATE -->
+<section id="mandate">
+    <h2>الولاية الاستراتيجية</h2>
     <div class="grid">
-        <div class="card">
-            <div class="kpi">8.9M</div>
-            إنتاج الطاقة اليومي
+        <div class="card">🛢 إدارة الموارد النفطية الوطنية</div>
+        <div class="card">⚡ أمن الطاقة والاستدامة</div>
+        <div class="card">🏗 تطوير مشاريع سيادية كبرى</div>
+        <div class="card">🌍 شراكات دولية استراتيجية</div>
+    </div>
+</section>
+
+<!-- OPERATIONS -->
+<section id="operations">
+    <h2>العمليات السيادية</h2>
+    <div class="grid">
+        <div class="card">إنتاج النفط الخام</div>
+        <div class="card">تكرير ومعالجة الطاقة</div>
+        <div class="card">إدارة شبكات الطاقة</div>
+        <div class="card">مشاريع البنية التحتية</div>
+    </div>
+</section>
+
+<!-- GLOBAL -->
+<section id="global">
+    <h2>النطاق الجغرافي</h2>
+    <div class="strip">
+        عمليات استراتيجية تمتد عبر: الشرق الأوسط — إفريقيا — آسيا — أوروبا
+    </div>
+</section>
+
+<!-- STATS -->
+<section id="stats">
+    <h2>المؤشرات السيادية</h2>
+    <div class="stats">
+        <div class="stat-box">
+            <div class="stat">32+</div>
+            مشروع استراتيجي
         </div>
-        <div class="card">
-            <div class="kpi">14</div>
+        <div class="stat-box">
+            <div class="stat">8.7M</div>
+            إنتاج طاقة
+        </div>
+        <div class="stat-box">
+            <div class="stat">14</div>
             دولة تشغيل
         </div>
-        <div class="card">
-            <div class="kpi">36</div>
-            مشاريع نشطة
-        </div>
-        <div class="card">
-            <div class="kpi">99.2%</div>
-            كفاءة التشغيل
-        </div>
     </div>
+</section>
 
-    <br>
+<footer>
+    © 2026 Naxus Energy Sovereign Authority
+</footer>
 
-    <!-- MAP -->
-    <div class="map">
-        <h3>🌍 الخريطة السيادية للعمليات</h3>
-        <p style="color:var(--muted);margin-top:10px;">
-            الشرق الأوسط — إفريقيا — آسيا — أوروبا — مشاريع طاقة استراتيجية
-        </p>
-    </div>
+<script>
+const sections = document.querySelectorAll("section");
 
-    <br>
-
-    <!-- SYSTEM MODULES -->
-    <div class="grid">
-        <div class="card">
-            ⚡ إدارة الطاقة
-            <p style="color:var(--muted);font-size:13px;">مراقبة الإنتاج والتوزيع</p>
-        </div>
-
-        <div class="card">
-            🛢 إدارة النفط
-            <p style="color:var(--muted);font-size:13px;">استخراج ومعالجة الخام</p>
-        </div>
-
-        <div class="card">
-            🌍 العمليات الدولية
-            <p style="color:var(--muted);font-size:13px;">تنسيق الدول والمشاريع</p>
-        </div>
-
-        <div class="card">
-            📊 التحليل السيادي
-            <p style="color:var(--muted);font-size:13px;">تقارير أداء استراتيجية</p>
-        </div>
-    </div>
-
-    <footer>
-        © 2026 Naxus Energy OS — Sovereign Energy Control System
-    </footer>
-
-</div>
+window.addEventListener("scroll", ()=>{
+    sections.forEach(sec=>{
+        if(window.scrollY > sec.offsetTop - 500){
+            sec.classList.add("show");
+        }
+    });
+});
+</script>
 
 </body>
 </html>
