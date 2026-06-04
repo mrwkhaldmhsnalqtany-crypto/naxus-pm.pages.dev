@@ -1,84 +1,165 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Naxus PM</title>
+<title>Energy State OS - Live</title>
 
 <style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #0f172a;
-    color: white;
+body{
+    margin:0;
+    font-family:Arial;
+    background:#050814;
+    color:#eaf2ff;
 }
 
-/* الشريط الجانبي */
-.sidebar {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 220px;
-    height: 100%;
-    background: #111827;
-    padding-top: 20px;
+header{
+    background:#0e1626;
+    padding:15px;
+    color:#00ffd0;
+    font-weight:bold;
+    text-align:center;
+    border-bottom:1px solid rgba(255,255,255,0.1);
 }
 
-.sidebar h2 {
-    text-align: center;
-    color: #38bdf8;
+.container{
+    padding:20px;
 }
 
-.sidebar a {
-    display: block;
-    padding: 15px;
-    color: white;
-    text-decoration: none;
-    transition: 0.3s;
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:12px;
 }
 
-.sidebar a:hover {
-    background: #1e293b;
-    padding-right: 25px;
+.card{
+    background:#0e1626;
+    padding:18px;
+    border-radius:10px;
+    border:1px solid rgba(255,255,255,0.08);
 }
 
-/* المحتوى */
-.content {
-    margin-right: 230px;
-    padding: 20px;
+.kpi{
+    font-size:26px;
+    color:#00ffd0;
+    font-weight:bold;
 }
 
-.card {
-    background: #1e293b;
-    padding: 20px;
-    margin: 10px 0;
-    border-radius: 10px;
+.status{
+    margin:15px 0;
+    padding:12px;
+    border-radius:8px;
+    background:rgba(0,255,208,0.08);
+    border:1px solid rgba(0,255,208,0.3);
+    color:#9fb0c8;
+}
+
+.alert{
+    margin-top:15px;
+    padding:12px;
+    border-radius:8px;
+}
+
+.good{border:1px solid #00ffd0;color:#00ffd0;}
+.warn{border:1px solid #ffcc66;color:#ffcc66;}
+.bad{border:1px solid #ff5c7a;color:#ff5c7a;}
+
+button{
+    margin-top:15px;
+    padding:12px;
+    width:100%;
+    border:none;
+    border-radius:8px;
+    background:#00ffd0;
+    font-weight:bold;
+    cursor:pointer;
 }
 </style>
 </head>
 
 <body>
 
-<div class="sidebar">
-    <h2>Naxus PM</h2>
-    <a href="#">🏠 الرئيسية</a>
-    <a href="#">📊 المشاريع</a>
-    <a href="#">💰 الاستثمار</a>
-    <a href="#">⚡ الطاقة</a>
-    <a href="#">📈 التقارير</a>
+<header>🏛 Energy State OS - LIVE SIMULATION</header>
+
+<div class="container">
+
+<div class="status" id="status">
+النظام يعمل… مراقبة الطاقة جارية بشكل لحظي
 </div>
 
-<div class="content">
-    <h1>مرحباً بك في Naxus PM</h1>
+<div class="grid">
 
-    <div class="card">
-        لوحة التحكم الرئيسية للموقع 🚀
-    </div>
-
-    <div class="card">
-        هنا سيتم عرض المشاريع والاستثمارات
-    </div>
+<div class="card">
+<div class="kpi" id="prod">0</div>
+الإنتاج
 </div>
+
+<div class="card">
+<div class="kpi" id="dem">0</div>
+الطلب
+</div>
+
+<div class="card">
+<div class="kpi" id="res">0</div>
+الاحتياطي
+</div>
+
+<div class="card">
+<div class="kpi" id="risk">---</div>
+المخاطر
+</div>
+
+</div>
+
+<button onclick="updateSystem()">تشغيل تحديث ذكي</button>
+
+<div class="alert good" id="decision">
+AI جاهز للتحليل
+</div>
+
+</div>
+
+<script>
+
+function updateSystem(){
+
+    let production = Math.floor(8500 + Math.random()*1500);
+    let demand = Math.floor(8000 + Math.random()*1200);
+
+    let reserve = production - demand;
+
+    let risk = "LOW";
+    let decision = "";
+
+    if(reserve < 0){
+        risk = "HIGH";
+        decision = "⚠ عجز طاقة — يجب رفع الإنتاج فورًا";
+    }
+    else if(reserve < 500){
+        risk = "MEDIUM";
+        decision = "🟡 توازن حساس — زيادة الإنتاج بنسبة 5%";
+    }
+    else{
+        risk = "LOW";
+        decision = "🟢 النظام مستقر — تخزين الفائض";
+    }
+
+    document.getElementById("prod").innerText = production;
+    document.getElementById("dem").innerText = demand;
+    document.getElementById("res").innerText = reserve;
+    document.getElementById("risk").innerText = risk;
+    document.getElementById("decision").innerText = decision;
+
+    document.getElementById("status").innerText =
+        "🧠 AI يعمل: تحليل الطاقة العالمية في الوقت الحقيقي";
+
+}
+
+// تشغيل تلقائي
+setInterval(updateSystem, 3000);
+updateSystem();
+
+</script>
 
 </body>
 </html>
