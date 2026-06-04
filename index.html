@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,76 +13,28 @@ body{
     color:#eaf2ff;
 }
 
-/* TOP BAR */
-.topbar{
-    position:fixed;
-    top:0;
-    right:0;
-    left:0;
-    height:60px;
+header{
+    padding:15px 20px;
     background:#0e1626;
+    border-bottom:1px solid rgba(255,255,255,0.08);
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:0 20px;
-    border-bottom:1px solid rgba(255,255,255,0.08);
-    z-index:1000;
 }
 
-.brand{
+header h1{
     color:#00ffd0;
-    font-weight:bold;
+    font-size:18px;
 }
 
-.menu-btn{
-    background:none;
-    border:1px solid #00ffd0;
-    color:#00ffd0;
-    padding:6px 10px;
-    border-radius:6px;
-    cursor:pointer;
-}
-
-/* SIDEBAR */
-.sidebar{
-    position:fixed;
-    top:60px;
-    right:-260px;
-    width:240px;
-    height:100%;
-    background:#0e1626;
-    border-left:1px solid rgba(255,255,255,0.08);
-    transition:0.3s;
-    padding:15px;
-}
-
-.sidebar.open{
-    right:0;
-}
-
-.sidebar a{
-    display:block;
-    padding:10px;
-    color:#9fb0c8;
-    text-decoration:none;
-    border-radius:6px;
-}
-
-.sidebar a:hover{
-    background:#111a2e;
-    color:#00ffd0;
-}
-
-/* MAIN */
-.main{
-    margin-top:60px;
+.container{
     padding:20px;
 }
 
 .grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-    gap:12px;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:15px;
 }
 
 .card{
@@ -99,18 +51,27 @@ body{
 }
 
 .status{
-    margin:15px 0;
-    padding:12px;
+    padding:10px;
+    margin-bottom:15px;
     border-radius:8px;
     background:rgba(0,255,208,0.08);
     border:1px solid rgba(0,255,208,0.3);
     color:#9fb0c8;
 }
 
+.alert{
+    padding:10px;
+    border-radius:8px;
+    margin-top:10px;
+}
+
+.good{border:1px solid #00ffd0;color:#00ffd0;}
+.warn{border:1px solid #ffcc66;color:#ffcc66;}
+.bad{border:1px solid #ff5c7a;color:#ff5c7a;}
+
 button{
-    margin-top:15px;
-    padding:12px;
-    width:100%;
+    margin-top:10px;
+    padding:10px 14px;
     border:none;
     border-radius:8px;
     background:#00ffd0;
@@ -122,103 +83,89 @@ button{
 
 <body>
 
-<!-- TOP BAR -->
-<div class="topbar">
-    <div class="brand">🏛 Energy State OS</div>
-    <button class="menu-btn" onclick="toggleMenu()">☰ الأقسام</button>
-</div>
+<header>
+<h1>🏛 Energy State OS</h1>
+<div id="mode">LIVE SYSTEM</div>
+</header>
 
-<!-- SIDEBAR -->
-<div class="sidebar" id="sidebar">
-    <a href="#">🏠 الرئيسية</a>
-    <a href="#">⚡ الإنتاج</a>
-    <a href="#">📊 الطلب</a>
-    <a href="#">🧠 الذكاء الاصطناعي</a>
-    <a href="#">🌍 الشبكة العالمية</a>
-    <a href="#">🚨 المخاطر</a>
-</div>
-
-<!-- MAIN -->
-<div class="main">
+<div class="container">
 
 <div class="status" id="status">
-النظام يعمل… مراقبة الطاقة جارية
+النظام يعمل في الوضع السيادي — مراقبة الطاقة جارية...
 </div>
 
 <div class="grid">
 
 <div class="card">
-<div class="kpi" id="prod">0</div>
-الإنتاج
+<div class="kpi" id="production">9000</div>
+الإنتاج (MW)
 </div>
 
 <div class="card">
-<div class="kpi" id="dem">0</div>
-الطلب
+<div class="kpi" id="demand">8500</div>
+الطلب (MW)
 </div>
 
 <div class="card">
-<div class="kpi" id="res">0</div>
+<div class="kpi" id="reserve">500</div>
 الاحتياطي
 </div>
 
 <div class="card">
-<div class="kpi" id="risk">---</div>
-المخاطر
+<div class="kpi" id="efficiency">99%</div>
+الكفاءة
 </div>
 
 </div>
 
-<button onclick="updateSystem()">تشغيل تحليل AI</button>
-
-<div class="card" id="decision" style="margin-top:15px;">
-AI جاهز للتحليل
+<div class="card" style="margin-top:15px;">
+<h3>🧠 AI القرار السيادي</h3>
+<div id="decision">جارٍ تحليل النظام...</div>
+<button onclick="runDecision()">تشغيل تحليل فوري</button>
+<div id="alert" class="alert good">النظام مستقر</div>
 </div>
 
 </div>
 
 <script>
 
-function toggleMenu(){
-    document.getElementById("sidebar").classList.toggle("open");
-}
-
-function updateSystem(){
+function runDecision(){
 
     let production = Math.floor(8500 + Math.random()*1500);
     let demand = Math.floor(8000 + Math.random()*1200);
 
     let reserve = production - demand;
+    let efficiency = (97 + Math.random()*2).toFixed(1);
 
-    let risk = "LOW";
     let decision = "";
+    let alertBox = document.getElementById("alert");
 
     if(reserve < 0){
-        risk = "HIGH";
-        decision = "⚠ عجز طاقة — رفع الإنتاج فورًا";
+        decision = "⚠ عجز في الطاقة — تفعيل استيراد فوري أو تخفيض الطلب";
+        alertBox.className = "alert bad";
+        alertBox.innerText = "خطر: الطلب أعلى من الإنتاج";
     }
     else if(reserve < 500){
-        risk = "MEDIUM";
-        decision = "🟡 توازن حساس — زيادة الإنتاج";
+        decision = "🟡 توازن حساس — رفع الإنتاج بنسبة 5%";
+        alertBox.className = "alert warn";
+        alertBox.innerText = "تحذير: احتياطي منخفض";
     }
     else{
-        risk = "LOW";
-        decision = "🟢 النظام مستقر — تخزين الفائض";
+        decision = "🟢 النظام مستقر — تخزين الفائض في الشبكة الوطنية";
+        alertBox.className = "alert good";
+        alertBox.innerText = "استقرار سيادي كامل";
     }
 
-    document.getElementById("prod").innerText = production;
-    document.getElementById("dem").innerText = demand;
-    document.getElementById("res").innerText = reserve;
-    document.getElementById("risk").innerText = risk;
+    document.getElementById("production").innerText = production;
+    document.getElementById("demand").innerText = demand;
+    document.getElementById("reserve").innerText = reserve;
+    document.getElementById("efficiency").innerText = efficiency + "%";
     document.getElementById("decision").innerText = decision;
-
-    document.getElementById("status").innerText =
-        "🧠 AI: تحليل مباشر لشبكة الطاقة العالمية";
 
 }
 
-setInterval(updateSystem,4000);
-updateSystem();
+setInterval(runDecision,4000);
+runDecision();
 
 </script>
 
